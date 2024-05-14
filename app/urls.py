@@ -27,4 +27,5 @@ urlpatterns = [
     path('', include('accounts.urls')),
     path('', index, name='landing_page'),
     path('', include('calendars.urls')),
+    path('', include('treatments.urls')),
 ]

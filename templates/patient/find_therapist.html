@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+{% include "patient/partials/navbar.html" %}
+<div class="container col-10 mx-auto">
+    {% if options %}
+        {% for option in options %}
+        <ul class="list-group col-4 mx-auto">
+            <a href="{% url 'new_treatment' therapist_id=option.therapist.id schedule_id=option.id %}" class="">
+                <li class="list-group-item">
+                    {{ option.therapist }} - {{ option }}
+                </li>
+            </a>
+        </ul>
+        {% endfor %}
+    {% endif %}
+</div>
+{% endblock content %}

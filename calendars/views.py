@@ -1,7 +1,5 @@
 from django.contrib import messages
 from django.views.generic import CreateView, DeleteView, ListView
-
-
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from .forms import CalendarModelForm
@@ -36,11 +34,7 @@ class CalendarListView(ListView):
 
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
-class CalendarOptionsView(ListView):
+class CalendarFindView(ListView):
     model = Calendar
     template_name = 'patient/find_therapist.html'
-    context_object_name = 'dates'
-
-    def get_queryset(self):
-        queryset = super().get_queryset().all()
-        return queryset
+    context_object_name = 'options'
