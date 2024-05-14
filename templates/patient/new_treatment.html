@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+{% include "patient/partials/navbar.html" %}
+<div class="container col-10 mx-auto">
+    <h1 class="text-center">Marcar Nova Consulta</h1>
+    <form method="post">
+        {% csrf_token %}
+        
+        <ul class="list-group col-4 mx-auto">
+            <li class="list-group-item">Terapeuta: {{ therapist }}</li>
+            <li class="list-group-item">Dia e Horário: {{ schedule }}</li>
+        </ul>
+        <input type="hidden" name="therapist" value="{{ therapist.id }}">
+        <input type="hidden" name="schedule" value="{{ schedule.id }}">
+        <input type="hidden" name="is_active" value="True">
+        <input type="hidden" name="patient" value={{ user.profile.id }}>
+        <div class="text-center m-3">
+            <button class="btn btn-primary" type="submit">Agendar Consulta</button>
+        </div>
+        {% if form.errors %}{{form.errors}}{% endif %}
+    </form>
+</div>
+{% endblock %}
