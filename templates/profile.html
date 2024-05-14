@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+{% if user.profile.crp %}
+    {% include "therapist/partials/navbar.html" %}
+{% else %}
+    {% include "patient/partials/navbar.html" %}
+{% endif %}
+<div class="m-3 text-center">
+    <a class="btn btn-primary" href="{% url 'edit_profile' pk=user.profile %}">Editar Perfil</a>
+</div>
+<div class="container col-8">
+    {% for key, value in fields.items %}
+    {% if value %}
+        <div>
+            <p>{{ key }}: <div class="card"><div class="m-1">{{ value }}</div></div></p>
+        </div>
+    {% endif %}
+    {% endfor %}    
+</div>
+{% endblock content %}

@@ -1,0 +1,7 @@
+{% if user.profile.crp %}
+    {% include "therapist/home.html" %}
+{% elif user.profile.age %}
+    {% include "patient/home.html" %}
+{% else %}
+    {% include "landingpage.html" %}
+{% endif %}

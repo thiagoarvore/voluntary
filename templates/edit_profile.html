@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+{% load widget_tweaks %}
+{% if user.profile.crp %}
+    {% include "therapist/partials/navbar.html" %}
+{% else %}
+    {% include "patient/partials/navbar.html" %}
+{% endif %}
+<div class="m-3 text-center">
+    <h3>Editar Perfil</h3>
+</div>
+<div class="container col-8">
+    <form method='post'>
+        {% csrf_token %}
+        {% for field in form %}
+            {% if field.value %}                
+                {% if field != form.photo %}
+                <div class="m-4">
+                    <label>{{ field.label }}:</label>
+                    {% render_field field class="form-control" %}
+                </div>                
+                {% endif %}                
+            {% endif %}
+        {% endfor %}
+        <div class="m-4 text-center">
+            <input class="btn btn-primary" type="submit">
+        </div>
+    </form>
+</div>
+{% endblock content %}

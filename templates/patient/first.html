@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+{% include "partials/navbar.html" %}
+{% load widget_tweaks %}
+<div class="container m-4 col-8">
+<form method="post">
+    {% csrf_token %}
+    <div class="m-4">
+        <label>Nome Completo:</lable>
+        {% render_field form.name class="form-control" %}
+    </div>
+    <div class="m-4">
+        <label>Whatsapp:</lable>
+            {% render_field form.whatsapp class="form-control" %}
+    </div>
+    <div class="m-4">
+        <label>Cidade:</lable>
+            {% render_field form.city class="form-control" %}
+    </div>
+    <div class="m-4">
+        <label>UF:</lable>
+            {% render_field form.uf class="form-control" %}
+    </div>
+    <div class="m-4">
+        <label>Idade:</label>
+        {% render_field form.age class="form-control" %}
+    </div>
+    <div class="m-4">
+        <label>Endereço:</label>
+        {% render_field form.address class="form-control" %}
+    </div>
+    <div class="m-4">
+        <label>Já faz acompanhamento psiquiátrico:</label>
+        {% render_field form.psychiatric class="form-control" %}
+    </div>
+    <div class="m-4">
+        <label>Telefone para emergencias:</label>
+        {% render_field form.emergency_number class="form-control" %}
+    </div>
+    <div class="container text-center mb-4">            
+        <input type="submit" value="Cadastrar" class="btn btn-primary mx-auto">
+    </div>
+    {% if form.errors %}{{form.errors}}{% endif %}
+</form>
+</div>
+{% endblock content %}

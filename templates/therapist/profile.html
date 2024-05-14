@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% include "therapist/partials/navbar.html" %}
+    <div class="container">
+        <div class="text-center m-1">
+            {% if user.business_name %}{{user.business_name}}{% endif %}
+            {% if user.reviews %}
+                <div>
+                    <p>Sua avaliação é: {{ review.rate }}</p>
+                </div>
+                {% for review in user.reviews %}
+                    <div class="text-center">
+                        <card>
+                            <div class="text-center"><p class="text-center">Profissional: {{ review.contacted }}</p></div>
+                            <div class="text-center"><p class="text-center">Comentário: {{ review.comment }}</p></div>
+                        </card>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            {% if user.business_plan %}
+                <div class="text-center">{{user.business_plan}}</div>
+            {% else %}
+                <div class="text-center"><p>Você ainda não assinou nosso plano, <a href="#">aproveite!</a></p></div>
+            {% endif %}
+        </div>
+        <div class="text-center m-2">
+            <button class"btn btn-primary"><a href="#">Editar Perfil</a></button>
+        </div>
+    </div>
+{% endblock content %}

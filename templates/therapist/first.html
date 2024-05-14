@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+{% load widget_tweaks %}
+{% include "partials/navbar.html" %}
+<div class="container col-8">
+    <p>Olá {{ user.profile }}</p>
+<form method="post">
+    {% csrf_token %}    
+    <div class="m-4">
+        <label>Nome Completo:</lable>
+        {% render_field form.name class="form-control" %}
+    </div>
+    <div class="m-4">
+        <label>Whatsapp:</lable>
+            {% render_field form.whatsapp class="form-control" %}
+    </div>
+    <div class="m-4">
+        <label>Cidade:</lable>
+            {% render_field form.city class="form-control" %}
+    </div>
+    <div class="m-4">
+        <label>UF:</lable>
+            {% render_field form.uf class="form-control" %}
+    </div>
+    <div class="m-4">
+        <label>CRP:</lable>
+            {{ form.crp }}
+    </div>
+    <div class="m-4">
+        <label>Plataforma preferida:</lable>
+            {% render_field form.platform class="form-control" %}
+    </div>
+    <div class="m-4">
+        <label>Está de acordo com os princípios do CRP:</lable>
+            {% render_field form.crp_check class="form-control" %}
+    </div>
+    <div class="m-4">
+        <label>Tem treinamento para emergência:</lable>
+            {% render_field form.trained class="form-control" %}
+    </div>
+    <div class="container text-center mb-4">            
+        <input type="submit" value="Cadastrar" class="btn btn-primary mx-auto">
+    </div>
+
+    {% if form.errors %}{{form.errors}}{% endif %}
+</form>
+</div>  
+
+{% endblock content %}

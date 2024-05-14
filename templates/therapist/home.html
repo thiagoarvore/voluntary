@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+{% include "therapist/partials/navbar.html" %}
+<div class="container col-11 m-1 mx-auto">
+    <div class="text-center m-2">
+        <p>Olá {{ user.profile }}</p>
+    </div>
+    {% if not user.profile.calendars.exists %}
+        <div class="container m-3">
+            <p>Você ainda não tem consultas agendadas.</p>            
+        </div>
+
+        <div class="text-center m-2">
+            <a class="btn btn-primary mb-4" href="{% url 'new_calendar' %}">Disponibilizar horário</a>
+        </div> 
+    {% endif %}
+    <div class="text-center m-2">
+        <a class=" btn btn-primary m-4" href="{% url 'calendar_list' %}">Seus Horários disponibilizados</a>
+    </div>
+</div> 
+{% endblock content %}

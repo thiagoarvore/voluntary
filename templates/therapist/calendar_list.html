@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+{% include "therapist/partials/navbar.html" %}
+<div class="container col-11 mx-auto">    
+    <div class="text-center">
+        <h3 class="m-3">Seus horários disponibilizados:</h3>
+        {% if dates %}
+            {% for day in dates %}
+                <li class="list-group col-4 mx-auto">
+                    <ul class="list-group-item"> {{day}} </ul>
+                </li>    
+            {% endfor %}
+        {% endif %}
+    </div>    
+</div>
+{% endblock content %}

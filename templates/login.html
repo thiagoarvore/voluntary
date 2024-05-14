@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+{% load widget_tweaks %} 
+{% include "partials/navbar.html" %}   
+<div class="container col-7">
+    <h2 class="card-title text-center m-4">Entrar</h2>
+    <form method="post">
+        {% csrf_token %}
+        {% if form.errors %}
+            <div class="alert alert-danger">
+                {% for field, error_list in form.errors.items %}
+                    {% for error in error_list %}
+                        {{ error }}
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% for field in form %}
+            <div class="form-group">
+                {{ field.label_tag }}
+                {% render_field field class="form-control" %}
+            </div>
+        {% endfor %}
+        <div class="m-4 text-center">
+            <button class="btn btn-primary btn-lg" type="submit" id="submit_button">Entrar</button>
+        </div>
+    </form>
+</div>
+{% endblock content %}

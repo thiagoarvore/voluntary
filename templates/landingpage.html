@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% include "partials/navbar.html" %}
+<div class="container mt-5">
+  <div class="row m-2">    
+    <div class="text-center col-6">
+      <h2 class="m-5">Bem-vindo à Rede do Bem</h2>
+      <p class="lead m-3">Aqui você encontrará ajuda nesse momento de necessidade.</p>    
+      <a class="btn btn-primary m-3" href="{% url 'signup' %}">Comece Agora</a>
+    </div>
+    <div class=" text-center col-6">
+      <img src="static\pareja-casada-que-tiene-problemas-su-relacion-estan-asistiendo-al-psicologo-busca-consejo.jpg" alt="Imagem de destaque" class="img-fluid" style="max-width: 90%; height: auto;"></img>
+    </div>
+  </div>
+</div>
+{% endblock content %}

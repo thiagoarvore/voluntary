@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+{% load widget_tweaks %} 
+{% include "partials/navbar.html" %}   
+<div class="container col-8">
+    <h2 class="card-title text-center m-4">Criar Conta</h2>
+    <form method="post">
+        {% csrf_token %}
+        {% if form.errors %}
+                <div class="alert alert-danger">
+                    {% for field, error_list in form.errors.items %}
+                        {% for error in error_list %}
+                            {{ error }}
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% for field in form %}            
+            <div class="form-group m-2">
+                {{ field.label_tag }}
+                {% if field.name == 'username' %}
+                    <p class="form-text text-muted">Este será seu nome de usuário único, e será apenas utilizado para login.</p>
+                {% endif %}
+                {% render_field field class="form-control" %}                
+            </div>
+        {% endfor %}
+        <div class="m-4 text-center flex-row">
+            <p>Concordo com os termos de uso:</p><input type="checkbox" id="id_acceptance">
+        </div>
+        <div class="m-4 text-center">
+            <button class="btn btn-secondary btn-lg" type="submit" id="submit_button" disabled>Cadastrar</button>
+        </div>
+    </form>
+</div>
+<script>
+    const checkbox = document.getElementById('id_acceptance');
+    const button = document.getElementById('submit_button');
+
+        checkbox.addEventListener('change', function() {
+            button.disabled = !this.checked;
+            button.classList.toggle('btn-primary', this.checked);
+            button.classList.toggle('btn-secondary', !this.checked);
+    });
+</script>
+{% endblock content %}
