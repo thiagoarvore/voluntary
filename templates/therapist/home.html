@@ -3,16 +3,43 @@
 {% include "therapist/partials/navbar.html" %}
 <div class="container col-11 m-1 mx-auto">
     <div class="text-center m-2">
-        <p>Olá {{ user.profile }}</p>
+        <h1>Olá {{ user.profile }}</h1>
     </div>
     {% if not user.profile.calendars.exists %}
         <div class="container m-3">
             <p>Você ainda não tem consultas agendadas.</p>            
         </div>
-
         <div class="text-center m-2">
             <a class="btn btn-primary mb-4" href="{% url 'new_calendar' %}">Disponibilizar horário</a>
-        </div> 
+        </div>
+    {% elif user.profile.therapist_treatments.exists %}
+        <div class="m-4 col-6 mx-auto">
+            <div class="text-center">
+                <h3>Suas consultas marcadas</h3>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col" width="60%">Paciente</th>
+                        <th scope="col">Dia e Horário</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for appointment in user.profile.therapist_treatments.all %}
+                    {% if appointment.is_active %}              
+                        <tr>
+                            <td scope="row">
+                                {{ appointment.patient }}
+                            </td>
+                            <td scope="row">
+                                {{ appointment.schedule }}
+                            </td>                              
+                        </tr>
+                    {% endif %}               
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
     {% endif %}
     <div class="text-center m-2">
         <a class=" btn btn-primary m-4" href="{% url 'calendar_list' %}">Seus Horários disponibilizados</a>

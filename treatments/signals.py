@@ -9,4 +9,7 @@ def create_user_profile(sender, instance, created, **kwargs):
     if created:        
         schedule_id = instance.schedule_id
         calendar = Calendar.objects.get(pk=schedule_id)
-        calendar.delete()
+        print(calendar.is_active)
+        calendar.is_active = False
+        print(calendar.is_active)
+        calendar.save()

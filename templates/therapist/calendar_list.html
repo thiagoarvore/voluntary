@@ -6,9 +6,15 @@
         <h3 class="m-3">Seus horários disponibilizados:</h3>
         {% if dates %}
             {% for day in dates %}
+                {% if day.is_active %}
                 <li class="list-group col-4 mx-auto">
                     <ul class="list-group-item"> {{day}} </ul>
-                </li>    
+                </li>
+                {% else %}
+                <li class="list-group col-4 mx-auto">
+                    <ul class="list-group-item"> {{day}} - ocupado </ul>
+                </li>
+                {% endif %}    
             {% endfor %}
         {% endif %}
     </div>    

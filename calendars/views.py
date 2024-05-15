@@ -38,3 +38,6 @@ class CalendarFindView(ListView):
     model = Calendar
     template_name = 'patient/find_therapist.html'
     context_object_name = 'options'
+
+    def get_queryset(self):
+        return Calendar.objects.filter(is_active=True)

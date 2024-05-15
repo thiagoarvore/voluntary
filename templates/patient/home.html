@@ -1,24 +1,37 @@
 {% extends "base.html" %}
 {% block content %}
 {% include "patient/partials/navbar.html" %}
-<div class="container col-11 mx-auto">
-    <div class="text-center">
-    <p>Olá {{ user.profile }}</p>
-    </div>
-    <div>
+    <div class="container col-8 mx-auto">
+        <div class="text-center">
+            <h1>Olá {{ user.profile }}</h1>
+        </div>
         {% if not user.profile.patient_treatments.exists %}
-            <div class="container m-3">
+            <div class="m-3">
                 <p>Você ainda não tem consultas agendadas.</p>
-                <a class="btn btn-primary mb-4" href="#">Procurar profissional</a>
+                <a class="btn btn-primary mb-4" href="{% url 'find_therapist' %}">Procurar profissional</a>
             </div>
         {% else %}
-        <div class="card col-3 m-4">
-            {% for dte in user.profile.patient_treatments.all %}
-                {{ date.schedule }}
-                {{ date.therapist }}
-            {% endfor %}
-        </div>
-        {% endif %}
-    </div>  
-</div>  
+            <div class="text-center">
+                <h3>Suas consultas agendadas:</h3>
+            </div>            
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Terapeuta</th>
+                        <th scope="col">Dia e Horário</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for date in user.profile.patient_treatments.all %}
+                        {% if date.is_active %}
+                            <tr>
+                                <td scope="row">{{ date.therapist }}</td>
+                                <td scope="row">{{ date.schedule }}</td>
+                            </tr>
+                        {% endif %}                    
+                    {% endfor %}
+                </tbody>
+            </table>          
+        {% endif %}       
+    </div>    
 {% endblock content %}

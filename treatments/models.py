@@ -9,7 +9,7 @@ class Treatment(models.Model):
     patient = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='patient_treatments')
     therapist = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='therapist_treatments')
     schedule = models.ForeignKey(Calendar, on_delete=models.CASCADE, related_name='treatments')
-    is_active = models.BooleanField()
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return f'{self.patient} em tratamento com {self.therapist} - {self.shedule}'

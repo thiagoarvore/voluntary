@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+{% include "therapist/partials/navbar.html" %}
+{% if not options %}
+    <div class="text-center m-4">
+        <h3>Não há terapeutas ou horários disponíveis</h3>
+    </div>
+{% elif options %}
+    <div class="m-4 col-6 mx-auto">
+        <div class="text-center">
+            <h3>Suas consultas marcadas</h3>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col" width="40%">Paciente</th>
+                    <th scope="col">Dia e Horário</th>
+                    <th></th>                   
+                </tr>
+            </thead>
+            <tbody>
+            {% for appointment in user.profile.therapist_treatments.all %}
+                {% if appointment.is_active %}               
+                    <tr>
+                        <td scope="row">
+                                {{ appointment.patient }}
+                            </a>
+                        </td>
+                        <td scope="row">
+                            {{ appointment.schedule }}
+                        </td>
+                        <td>
+                            <a href="{% url 'end_treatment' pk=appointment.id %}">
+                                <input class="btn btn-primary" value="Finalizar atendimento">
+                            </a>
+                        </td>                           
+                    </tr>  
+                {% endif %}               
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endif %}
+{% endblock content %}

@@ -2,16 +2,37 @@
 {% block content %}
 {% include "patient/partials/navbar.html" %}
 <div class="container col-10 mx-auto">
-    {% if options %}
-        {% for option in options %}
-        <ul class="list-group col-4 mx-auto">
-            <a href="{% url 'new_treatment' therapist_id=option.therapist.id schedule_id=option.id %}" class="">
-                <li class="list-group-item">
-                    {{ option.therapist }} - {{ option }}
-                </li>
-            </a>
-        </ul>
-        {% endfor %}
+    {% if not options %}
+    <div class="text-center m-4">
+        <h3>Não há terapeutas ou horários disponíveis</h3>
+    </div>
+    {% elif options %}
+    <div class="m-4 col-8 mx-auto">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col" width="40%">Terapeuta</th>
+                    <th scope="col">Dia e Horário</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for option in options %}
+                {% if option.is_active %}
+                <tr>
+                    <td scope="row">{{ option.therapist }}</td>
+                    <td scope="row">{{ option }}</td>
+                    <td>
+                        <a href="{% url 'new_treatment' therapist_id=option.therapist.id schedule_id=option.id %}">
+                            <button class="btn btn-primary">Agendar consulta</button>
+                        </a>  
+                    </td>                              
+                </tr>  
+                {% endif %}                  
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
     {% endif %}
 </div>
 {% endblock content %}

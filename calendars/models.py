@@ -42,6 +42,7 @@ class Calendar(models.Model):
     therapist = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='calendars')
     week_day = models.PositiveSmallIntegerField(choices=WEEK_DAYS.items())
     schedule = models.PositiveSmallIntegerField(choices=SCHEDULE_CHOICES)
+    is_active = models.BooleanField(default=True)
 
     class Meta:
         ordering = ['week_day', 'schedule']

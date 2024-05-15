@@ -1,4 +1,4 @@
-from django.views.generic import CreateView, DeleteView
+from django.views.generic import CreateView, UpdateView, ListView
 from .models import Treatment
 from .forms import TreatmentModelForm
 from django.shortcuts import get_object_or_404
@@ -39,3 +39,34 @@ class TreatmentCreateView(CreateView):
         form.instance.patient = self.request.user.profile
         form.instance.is_active = True
         return super().form_valid(form)
+
+
+@method_decorator(login_required(login_url='login'), name='dispatch')
+class EndTreatmentView(UpdateView):
+    model = Treatment
+    form_class = TreatmentModelForm
+    template_name = 'therapist/end_treatment.html'
+    success_url = '/home/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        treatment = self.get_object()
+        context['patient'] = treatment.patient
+        context['schedule'] = treatment.schedule
+        return context
+
+    def form_valid(self, form):               
+        form.instance.is_active = False
+        return super().form_valid(form)
+
+
+@method_decorator(login_required(login_url='login'), name='dispatch')
+class TreatmentTherapistListView(ListView):
+    model = Treatment
+    form_class = TreatmentModelForm
+    template_name = 'therapist/treatments.html'
+    context_object_name = 'options'
+    success_url = '/home/'
+
+    def get_queryset(self):
+        return Treatment.objects.filter(therapist=self.request.user.profile, is_active=True)
