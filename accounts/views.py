@@ -137,8 +137,3 @@ def home_view(request):
 class ChangePasswordView(auth_views.PasswordChangeView):
     template_name = 'change_password.html'
     success_url = '/home/'
-
-
-@method_decorator(login_required(login_url='login'), name='dispatch')
-class ResetPasswordView(auth_views.PasswordResetView):
-    success_url = '/home/'
