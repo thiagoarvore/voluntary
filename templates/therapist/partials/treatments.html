@@ -3,7 +3,7 @@
 {% include "therapist/partials/navbar.html" %}
 {% if not options %}
     <div class="text-center m-4">
-        <h3>Não há terapeutas ou horários disponíveis</h3>
+        <h3>Não há atendimentos marcados</h3>
     </div>
 {% elif options %}
     <div class="m-4 col-6 mx-auto">
@@ -41,4 +41,5 @@
         </table>
     </div>
 {% endif %}
+
 {% endblock content %}

@@ -61,12 +61,15 @@ class EndTreatmentView(UpdateView):
 
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
-class TreatmentTherapistListView(ListView):
+class TreatmentListView(ListView):
     model = Treatment
     form_class = TreatmentModelForm
-    template_name = 'therapist/treatments.html'
+    template_name = 'treatments.html'
     context_object_name = 'options'
     success_url = '/home/'
 
     def get_queryset(self):
-        return Treatment.objects.filter(therapist=self.request.user.profile, is_active=True)
+        if self.request.user.profile.crp:
+            return Treatment.objects.filter(therapist=self.request.user.profile, is_active=True)
+        if self.request.user.profile.age:
+            return Treatment.objects.filter(patient=self.request.user.profile, is_active=True)
