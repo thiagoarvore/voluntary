@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, PasswordChangeForm
 from django.utils.translation import gettext_lazy as _
 from .models import Profile
 
@@ -46,3 +46,15 @@ class ProfileModelForm(forms.ModelForm):
 
 class UserLoginForm(AuthenticationForm):
     pass
+
+
+class ChangePasswordForm(PasswordChangeForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.error_messages['password_mismatch'] = _("As senhas não coincidem.")
+        self.error_messages['password_too_common'] = _("Esta senha é muito comum.")
+        self.error_messages['password_entirely_numeric'] = _("A senha não pode ser completamente numérica.")

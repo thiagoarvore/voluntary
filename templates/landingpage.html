@@ -2,11 +2,19 @@
 
 {% block content %}
 {% include "partials/navbar.html" %}
-<div class="container mt-5">
-  <div class="row m-2">    
-    <div class="text-center col-6">
-      <h2 class="m-5">Bem-vindo à Rede do Bem</h2>
-      <p class="lead m-3">Aqui você encontrará ajuda nesse momento de necessidade.</p>    
+<div class="container mt-5">  
+  <div class="text-center m-5">
+    <h2 class="m-5">Bem-vindo à Rede do Bem</h2>
+  </div>
+  <div>
+    <card class="card mb-3 text-dark bg-light border-light mx-auto text-center col-8">
+      <h6>Neste momento, a Rede do Bem oferece apoio psicológico para dar suporte às Vítimas das Enchentes do Rio Grande do Sul que tiveram suas vidas afetadas em consequência das chuvas.
+      O formato será de Plantão Psicológico ou Intervenção Breve por até 12 sessões. Nosso objetivo é dar suporte como uma ação preventiva secundária de apoio, reconstrução e superação do trauma às vítimas, parentes, turistas e socorristas.</h6>
+    </card>          
+  </div>    
+  <div class="row mt-4 mb-4">
+    <div class="text-center col-6 mt-5">
+      <p class="lead m-3">Encontre o profissional que precisa.</p>    
       <a class="btn btn-primary m-3" href="{% url 'signup' %}">Comece Agora</a>
     </div>
     <div class=" text-center col-6">
@@ -14,4 +22,5 @@
     </div>
   </div>
 </div>
+  
 {% endblock content %}
