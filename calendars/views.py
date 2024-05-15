@@ -1,5 +1,6 @@
+from typing import Any
 from django.contrib import messages
-from django.views.generic import CreateView, DeleteView, ListView
+from django.views.generic import CreateView, ListView, DeleteView, UpdateView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from .forms import CalendarModelForm
@@ -25,7 +26,7 @@ class CalendarListView(ListView):
     model = Calendar
     template_name = 'therapist/calendar_list.html'
     context_object_name = 'dates'
-    
+
     def get_queryset(self):
         queryset = super().get_queryset().filter(therapist=self.request.user.profile).order_by('week_day')
         return queryset
@@ -39,3 +40,38 @@ class CalendarFindView(ListView):
 
     def get_queryset(self):
         return Calendar.objects.filter(is_active=True)
+
+
+@method_decorator(login_required(login_url='login'), name='dispatch')
+class CalendarDeleteView(DeleteView):
+    model = Calendar
+    form_class = CalendarModelForm
+    template_name = 'therapist/delete_calendar.html'
+    success_url = '/home/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        date = self.get_object()
+        context['week_day'] = date.get_week_day_display()
+        context['schedule'] = date.get_schedule_display()
+        return context
+    
+
+@method_decorator(login_required(login_url='login'), name='dispatch')
+class CalendarUpdateView(UpdateView):
+    model = Calendar
+    form_class = CalendarModelForm
+    template_name = 'therapist/update_calendar.html'
+    success_url = '/home/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        date = self.get_object()
+        context['week_day_name'] = date.get_week_day_display()
+        context['schedule_name'] = date.get_schedule_display()
+        return context
+    
+    def form_valid(self, form):
+        form.instance.is_active = True
+        return super().form_valid(form)
+    

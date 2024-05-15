@@ -5,33 +5,42 @@
         <div class="text-center">
             <h1>Olá {{ user.profile }}</h1>
         </div>
-        {% if not user.profile.patient_treatments.exists %}
+        {% if not user.profile.patient_treatments %}
             <div class="m-3">
                 <p>Você ainda não tem consultas agendadas.</p>
                 <a class="btn btn-primary mb-4" href="{% url 'find_therapist' %}">Procurar profissional</a>
             </div>
-        {% else %}
-            <div class="text-center">
-                <h3>Suas consultas agendadas:</h3>
-            </div>            
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">Terapeuta</th>
-                        <th scope="col">Dia e Horário</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for date in user.profile.patient_treatments.all %}
-                        {% if date.is_active %}
-                            <tr>
-                                <td scope="row">{{ date.therapist }}</td>
-                                <td scope="row">{{ date.schedule }}</td>
-                            </tr>
-                        {% endif %}                    
-                    {% endfor %}
-                </tbody>
-            </table>          
-        {% endif %}       
+        {% endif %}
+        {% if user.profile.patient_treatments.all %}     
+            {% for i in user.profile.patient_treatments.all %}                
+                {% if i.is_active %}
+                    {% with check='True' %}
+                        {% if check == 'True' %}
+                            <div class="text-center m-1">
+                                <h3>Suas consultas agendadas:</h3>
+                            </div>            
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Terapeuta</th>
+                                        <th scope="col">Dia e Horário</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for date in user.profile.patient_treatments.all %}
+                                        {% if date.is_active %}
+                                            <tr>
+                                                <td scope="row">{{ date.therapist }}</td>
+                                                <td scope="row">{{ date.schedule }}</td>
+                                            </tr>
+                                        {% endif %}                    
+                                    {% endfor %}
+                                </tbody>
+                            </table>                        
+                        {% endif %} 
+                    {% endwith %}                       
+                {% endif %}
+            {% endfor %}
+        {% endif %} 
     </div>    
 {% endblock content %}

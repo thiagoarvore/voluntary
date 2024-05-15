@@ -2,8 +2,10 @@ from django.urls import path
 from django.shortcuts import render
 from .views import SignUpView, LoginView, LogoutView, FirstTherapistView, FirstPatientView, ProfileView, ProfileUpdateView, home_view
 
+
 def first_login_view(request):
     return render(request, 'firstlogin.html', {})
+
 
 urlpatterns = [
     path('signup/', SignUpView.as_view(), name='signup'),

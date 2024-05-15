@@ -1,7 +1,6 @@
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import FormView, UpdateView, DetailView
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -52,7 +51,7 @@ class FirstTherapistView(UpdateView):
     model = Profile
     form_class = ProfileModelForm
     template_name = 'therapist/first.html'
-    success_url = '/home/'    
+    success_url = '/home/'
 
     def get_object(self, queryset=None):
         return self.request.user.profile
@@ -63,7 +62,7 @@ class FirstPatientView(UpdateView):
     model = Profile
     form_class = ProfileModelForm
     template_name = 'patient/first.html'
-    success_url = '/home/'    
+    success_url = '/home/'
 
     def get_object(self, queryset=None):
         return self.request.user.profile
@@ -109,17 +108,18 @@ class ProfileUpdateView(UpdateView):
     def get_object(self):
         user = self.request.user
         return user.profile
-        
+
     def get_success_url(self):
         return reverse_lazy(
             'profile',
             kwargs={'pk': self.object.pk}
         )
 
+
 @login_required(login_url='login')
-def home_view(request):    
+def home_view(request):
     if request.user.profile.crp:
-        treatments= Treatment.objects.filter(therapist=request.user.profile, is_active=True)        
+        treatments = Treatment.objects.filter(therapist=request.user.profile, is_active=True)
     if request.user.profile.age:
         treatments = Treatment.objects.filter(patient=request.user.profile, is_active=True)
     return render(request, 'home.html', {'treatments': treatments})

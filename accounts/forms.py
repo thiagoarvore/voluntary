@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.utils.translation import gettext_lazy as _
 from .models import Profile
-from datetime import date
 
 
 class SignUpForm(UserCreationForm):
@@ -36,14 +35,13 @@ class ProfileModelForm(forms.ModelForm):
             'city', 'age', 'complaint', 'psychiatric',
             'emergency_number', 'crp', 'crp_check', 'platform', 'trained',
         ]
-        widgets = {            
+        widgets = {
             'city': forms.Select(attrs={}),
-            'uf': forms.Select(),            
+            'uf': forms.Select(),
         }
 
     def __init__(self, *args, **kwargs):
         super(ProfileModelForm, self).__init__(*args, **kwargs)
-        
 
 
 class UserLoginForm(AuthenticationForm):

@@ -22,6 +22,7 @@ from django.shortcuts import render
 def index(request):
     return render(request, 'landingpage.html', {})
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('accounts.urls')),

@@ -19,10 +19,10 @@ class TreatmentCreateView(CreateView):
         context = super().get_context_data(**kwargs)
         therapist_id = self.kwargs.get('therapist_id')
         schedule_id = self.kwargs.get('schedule_id')
-        
+
         therapist = get_object_or_404(Profile, id=therapist_id)
         schedule = get_object_or_404(Calendar, id=schedule_id)
-        
+
         context['therapist'] = therapist
         context['schedule'] = schedule
         context['is_active'] = True
@@ -35,7 +35,7 @@ class TreatmentCreateView(CreateView):
         therapist = get_object_or_404(Profile, id=therapist_id)
         schedule = get_object_or_404(Calendar, id=schedule_id)
         form.instance.therapist = therapist
-        form.instance.schedule = schedule      
+        form.instance.schedule = schedule
         form.instance.patient = self.request.user.profile
         form.instance.is_active = True
         return super().form_valid(form)
@@ -55,7 +55,7 @@ class EndTreatmentView(UpdateView):
         context['schedule'] = treatment.schedule
         return context
 
-    def form_valid(self, form):               
+    def form_valid(self, form):
         form.instance.is_active = False
         return super().form_valid(form)
 

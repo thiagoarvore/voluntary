@@ -6,14 +6,15 @@ from auditlog.registry import auditlog
 from ibge_data.models import UF, City
 
 
-PLATFORMS = {'Whatsapp': 'Whatsapp',
-                'Zoom': 'Zoom',
-                'Google Meets': 'Google Meets',
-                'Facetime': 'Facetime',
-                'Microsoft Teams': 'Microsoft Teams',
-                'Jitsi': 'Jitsi',
-                'Outro': 'Outro',
-                }
+PLATFORMS = {
+    'Whatsapp': 'Whatsapp',
+    'Zoom': 'Zoom',
+    'Google Meets': 'Google Meets',
+    'Facetime': 'Facetime',
+    'Microsoft Teams': 'Microsoft Teams',
+    'Jitsi': 'Jitsi',
+    'Outro': 'Outro',
+}
 
 
 class Profile(models.Model):
@@ -32,7 +33,7 @@ class Profile(models.Model):
     complaint = models.TextField(null=True, blank=True)
     psychiatric = models.BooleanField(null=True, blank=True)
     emergency_number = models.CharField(max_length=20, null=True, blank=True)
- 
+
     # therapist user
     crp = models.CharField(max_length=20, null=True, blank=True)
     platform = models.CharField(max_length=50, choices=PLATFORMS, null=True, blank=True)
@@ -43,4 +44,4 @@ class Profile(models.Model):
         return str(self.name)
 
 
-auditlog.register(Profile)  
+auditlog.register(Profile)
