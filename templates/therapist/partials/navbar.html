@@ -9,6 +9,12 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'new_calendar' %}">Disponibilizar Horário</a>
           </li>
+          
+          {% if user.profile.calendars.exists %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'calendar_list' %}">Horários disponíveis</a>
+            </li>
+          {% endif %}
           {% if user.profile.therapist_treatments.exists %}
             <li class="nav-item">
               <a class="nav-link" href="{% url 'treatments' %}">Minhas Consultas</a>

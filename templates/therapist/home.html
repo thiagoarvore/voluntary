@@ -5,14 +5,20 @@
     <div class="text-center m-2">
         <h1>Olá {{ user.profile }}</h1>
     </div>
+    
     {% if not user.profile.calendars.exists %}
         <div class="container m-3">
-            <p>Você ainda não tem consultas agendadas.</p>            
+            <p>Você ainda não tem horários disponibilizados.</p>            
         </div>
         <div class="text-center m-2">
             <a class="btn btn-primary mb-4" href="{% url 'new_calendar' %}">Disponibilizar horário</a>
         </div>
-    {% elif user.profile.therapist_treatments.exists %}
+    {% endif %}
+    {% if not treatments %}
+    <div class="container m-3">
+        <p>Você ainda não tem consultas marcadas.</p>            
+    </div>
+    {% else %}
         <div class="m-4 col-6 mx-auto">
             <div class="text-center">
                 <h3>Suas consultas marcadas</h3>
@@ -25,14 +31,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                {% for appointment in user.profile.therapist_treatments.all %}
-                    {% if appointment.is_active %}              
+                {% for date in treatments.all %}
+                    {% if date.is_active %}              
                         <tr>
                             <td scope="row">
-                                {{ appointment.patient }}
+                                {{ date.patient }}
                             </td>
                             <td scope="row">
-                                {{ appointment.schedule }}
+                                {{ date.schedule }}
                             </td>                              
                         </tr>
                     {% endif %}               
@@ -40,9 +46,6 @@
                 </tbody>
             </table>
         </div>
-    {% endif %}
-    <div class="text-center m-2">
-        <a class=" btn btn-primary m-4" href="{% url 'calendar_list' %}">Seus Horários disponibilizados</a>
-    </div>
+    {% endif %}    
 </div> 
 {% endblock content %}

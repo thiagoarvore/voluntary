@@ -13,3 +13,12 @@ def create_user_profile(sender, instance, created, **kwargs):
         calendar.is_active = False
         print(calendar.is_active)
         calendar.save()
+
+
+@receiver(post_save, sender=Treatment)
+def create_user_profile(sender, instance, created, **kwargs):
+    if not created:        
+        schedule_id = instance.schedule_id
+        calendar = Calendar.objects.get(pk=schedule_id)
+        calendar.is_active = True
+        calendar.save()

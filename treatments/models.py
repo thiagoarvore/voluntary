@@ -12,4 +12,4 @@ class Treatment(models.Model):
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
-        return f'{self.patient} em tratamento com {self.therapist} - {self.shedule}'
+        return f'{self.patient} em tratamento com {self.therapist} - {self.schedule}'

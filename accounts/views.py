@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.shortcuts import render, redirect
+from treatments.models import Treatment
 from .forms import SignUpForm, UserLoginForm, ProfileModelForm
 from .models import Profile
 
@@ -116,5 +117,9 @@ class ProfileUpdateView(UpdateView):
         )
 
 @login_required(login_url='login')
-def home_view(request):
-    return render(request, 'home.html', {})
+def home_view(request):    
+    if request.user.profile.crp:
+        treatments= Treatment.objects.filter(therapist=request.user.profile, is_active=True)        
+    if request.user.profile.age:
+        treatments = Treatment.objects.filter(patient=request.user.profile, is_active=True)
+    return render(request, 'home.html', {'treatments': treatments})

@@ -11,9 +11,7 @@ class CalendarCreateView(CreateView):
     model = Calendar
     form_class = CalendarModelForm
     template_name = 'therapist/new_calendar.html'
-    
-    def get_success_url(self):
-        return self.request.path
+    success_url = '/home/'
 
     def form_valid(self, form):
         # Antes de salvar o formulário, defina o usuário
