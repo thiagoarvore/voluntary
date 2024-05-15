@@ -66,7 +66,7 @@ class TreatmentListView(ListView):
     form_class = TreatmentModelForm
     template_name = 'treatments.html'
     context_object_name = 'options'
-    success_url = '/home/'
+    success_url = '/treatments/'
 
     def get_queryset(self):
         if self.request.user.profile.crp:
