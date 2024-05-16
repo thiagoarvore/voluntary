@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+{% if user.profile.crp %}
+    {% include "therapist/partials/navbar.html" %}
+{% else %}
+    {% include "patient/partials/navbar.html" %}
+{% endif %}
+<div class="container">
+    <div class="card mb-3 text-dark bg-light border-light mx-auto col-8 m-4">
+        <div class="card-body row ">
+            <h5 class="card-title text-center">Deletar Conta</h5>
+            <p class="text-center m-2">Você tem certeza que quer deletar sua conta? Esta ação é irreversível.</p>
+            <form method="post">
+                {% csrf_token %}
+                <div class="text-center m-3">   
+                    <button type="submit" class="btn btn-danger">Deletar Conta</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

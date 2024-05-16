@@ -1,9 +1,10 @@
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import FormView, UpdateView, DetailView
-from django.contrib.auth import views as auth_views
-from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout, views as auth_views
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.utils.decorators import method_decorator
 from django.shortcuts import render, redirect
 from treatments.models import Treatment
@@ -137,3 +138,14 @@ def home_view(request):
 class ChangePasswordView(auth_views.PasswordChangeView):
     template_name = 'change_password.html'
     success_url = '/home/'
+
+
+@login_required(login_url='login')
+def delete_account(request):
+    if request.method == 'POST':
+        user = request.user
+        user.delete()
+        messages.success(request, "Sua conta foi deletada com sucesso.")
+        return redirect('landing_page')
+    return render(request, 'delete_account.html')
+
