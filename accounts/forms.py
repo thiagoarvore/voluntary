@@ -13,6 +13,10 @@ class SignUpForm(UserCreationForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.fields['username'].label = 'Nome de usuário'
+        self.fields['email'].label = 'Endereço de e-mail'
+        self.fields['password1'].label = 'Senha'
+        self.fields['password2'].label = 'Confirmação de senha'
         self.error_messages['password_mismatch'] = _("As senhas não coincidem.")
         self.error_messages['duplicate_username'] = _("Este nome de usuário já está em uso.")
         self.error_messages['invalid_username'] = _("O nome de usuário deve conter apenas letras, números e @/./+/-/_ caracteres.")
@@ -45,7 +49,11 @@ class ProfileModelForm(forms.ModelForm):
 
 
 class UserLoginForm(AuthenticationForm):
-    pass
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].label = 'Nome de usuário'
+        self.fields['password'].label = 'Senha'
 
 
 class ChangePasswordForm(PasswordChangeForm):

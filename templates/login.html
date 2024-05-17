@@ -17,7 +17,9 @@
         {% endif %}
         {% for field in form %}
             <div class="form-group">
-                {{ field.label_tag }}
+                <div class="m-2">
+                    {{ field.label_tag }}
+                </div>
                 {% render_field field class="form-control" %}
             </div>
         {% endfor %}
@@ -25,7 +27,7 @@
             <button class="btn btn-primary btn-lg" type="submit" id="submit_button">Entrar</button>
         </div>
 
-        <div>
+        <div class="text-center mb-5">
             <a href="{% url 'password_reset' %}">Esqueci a senha</a>
         </div>
     </form>
