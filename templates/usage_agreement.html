@@ -1,0 +1,176 @@
+{% extends "base.html" %}
+{% block content %}
+{% if user.is_authenticated %}
+    {% if user.profile.crp %}
+        {% include "therapist/partials/navbar.html" %}
+    {% elif user.profile.age %}
+        {% include "patient/partials/navbar.html" %}
+    {% endif %}
+{% else %}
+    {% include "partials/navbar.html" %}
+{% endif %}
+<div class="container m-5">
+    <div class="card">
+        <div class="card-header text-center">
+            <h2>Termo de Uso</h2>
+            <div class="card-body text-center">
+                
+<p>Este Termo de Uso (&quot;Termo&quot;) estabelece as condições para a utilização do Software
+voluntário desenvolvido por Rede do Bem (&quot;Software&quot;), que proporciona uma plataforma de
+conexão entre terapeutas e pacientes para a contratação de serviços relacionados a atendimentos psicológicos.</p>
+
+<h5 clas="m-1">1. Aceitação dos Termos</h5>
+
+<p>Ao utilizar o Software, você (“Usuário”) concorda em cumprir e ficar vinculado a
+estes Termos de Uso, que regem a relação entre você e os outros usuários, se
+responsabilizando integralmente por todo e qualquer ato praticado por você na
+utilização do Software e através dele. Se você não concordar com estes termos, não
+utilize o Software.</p>
+
+<h5 clas="m-1">2. Serviços Oferecidos</h5>
+
+<p>O Software oferece uma plataforma de conexão que permite às pacientes encontrar terapeutas para
+atendimentos psicoterápicos de emergência. O objetivo é facilitar a interface o
+contato de terapeutas voluntários e pessoas com necessidade de atendimento.
+
+<strong>2.1</strong> Para utilizar o Software, é necessário acesso à internet, através de navegador, em
+smartphone, tablet, notebook ou computador, utilizando login e senha.
+
+<strong>2.2</strong> É gratuito o cadastro do Usuário no Software. 
+
+<strong>2.3</strong> O Software se reserva no direito de, a qualquer tempo, alterar, remover ou adicionar
+funcionalidade, na utilização da plataforma, bem como descontinuar os serviços do
+Software, de forma definitiva ou temporária, total ou parcialmente, sem qualquer prévia
+comunicação ao Usuário e sem que lhe seja devida qualquer indenização.
+
+<strong>2.4</strong> O Software se reserva no direito de utilizar os dados fornecidos pelo Usuário, de
+acordo com os termos da Política de Privacidade, para as finalidades nele previstas e
+de acordo com a lei vigente.
+
+<strong>2.5</strong> O Software utiliza serviços de terceiros para seu funcionamento, como serviço de
+hospedagem, ferramentas de pagamento, ferramentas de contato, ferramentas de
+localização geográfica, serviço de internet, não se responsabilizando, portanto, por
+eventuais falhas que possam ocorrer, suspensão ou interrupção de conexão,
+transmissões incompletas ou falhas, mau funcionamento eletrônico de qualquer rede,
+hardware ou Software do Usuário, quedas de energia, etc, eximindo-se de qualquer
+responsabilidade por tais fatos, alheios à sua vontade, ou por perdas, danos (diretos ou
+indiretos), lucros cessantes, etc. Esclarece que sempre que possível for, manterá o
+Usuário informado de qualquer falha ou instabilidade.
+
+<strong>2.6</strong> Durante a utilização, podem conter links para sites e aplicativos de terceiros que não
+pertencem ao Software, de forma que o Software não endossa, verifica, garante ou
+possui qualquer relação com esses sites ou aplicativos, não se responsabilizando pelo
+produto ou serviço ali disponibilizado ou seu conteúdo, veracidade, precisão, políticas
+práticas e opiniões ali expressas.
+
+<strong>2.7</strong> O Software não armazena informações de agenda, geolocalização, troca de
+contatos e contatos efetivados por mais de 48 horas.
+
+<strong>2.8</strong> O Software não se responsabiliza pela qualidade dos serviços prestados pelos
+Usuários cadastrados, tampouco pelas credenciais e formação acadêmica informadas
+pelo Usuário.</p>
+
+<h5 clas="m-1">3. Responsabilidades do Usuário</h5>
+
+<p>Ao utilizar o Software, o Usuário concorda em fornecer informações precisas e
+atualizadas. Além disso, o Usuário é responsável por manter a confidencialidade de
+suas credenciais de acesso e por todas as atividades que ocorrerem sob sua conta,
+bem como por cumprir com a legislação em vigor.
+
+<strong>3.1</strong> O Usuário é o único responsável por todas as atividades associadas ao seu
+cadastro no Software, não podendo, em hipótese alguma, compartilhar seus dados de
+acesso com terceiros. Caso haja perda, extravio ou suspeita de utilização indevida da
+conta, o Software deve ser imediatamente informado, para suspender o acesso à conta
+e tomar as medidas cabíveis.
+
+<strong>3.2</strong> O Usuário declara que as informações pessoais e informadas no cadastro
+estão corretas, completas e são verdadeiras. O Software se reserva no direito de
+verificar, a qualquer momento, a veracidade das informações cadastradas e solicitar
+documentos, se julgar necessário.
+
+<strong>3.3</strong> Havendo cadastro duplicado, cadastro com informações falsas, desvio de finalidade,
+fraude, obtenção de benefício ou vantagem ilícita, ou não cumprimento das previsões
+deste Termo de Uso, o Software poderá interromper o acesso do Usuário, de forma
+definitiva, sem prévio aviso, bem como tomar as medidas cabíveis, inclusive judiciais.
+
+<strong>3.4</strong> É de inteira responsabilidade do Usuário (i) utilizar os equipamentos adequados
+para acesso ao Software, (ii) manter o ambiente de seus equipamentos de acesso ao
+Software seguros com antivirus e firewal, por exemplo, (iii) manter sistemas
+operacionais atualizados, para o correto funcionamento do Software, (iv) entre outras
+previstas neste Termo de Uso.
+
+<strong>3.5</strong> O Usuário aceita e concorda em inserir suas informações de agenda e
+compromissos no Software e mantê-las atualizadas e que sejam acessados por outros
+Usuários, para viabilizar a busca e contato entre os interessados.
+
+<strong>3.6</strong> O Usuário aceita e concorda em compartilhar sua geolocalização via GPS, em
+tempo real, quando ativar essa funcionalidade, durante o uso do software e que sejam
+acessados por outros Usuários, para viabilizar a busca e contato entre os interesados.
+
+<strong>3.7</strong> O Usuário aceita e concorda com que seus dados de contato,
+formação/escolaridade, experiências profissionais, histórico e localização cadastrados e
+avaliação, sejam acessados por outros Usuários, para viabilizar a busca e contato entre os interessados.
+
+<strong>3.8</strong> O Usuário terapeuta aceita e concorda com que seu número de registro junto CRP a que pertence o registro, 
+sejam acessados por outros Usuários, para viabilizar a busca e contato entre os interessados, 
+considerando que diversos atos terapêuticos somente podem ser praticados por psicólogos habilitados junto ao CRP,
+permitindo, assim, a consulta de sua regularização junto ao CRP.</p>
+
+<h5 clas="m-1">4. Contato de Serviços</h5>
+
+<p>O Software facilita o contato de serviços entre paciente e terapeutas. 
+O Software não se responsabiliza pela qualidade
+dos serviços prestados pelos Usuários cadastrados, tampouco pelas credenciais e
+formação acadêmica informada pelo Usuário.</p>
+
+<h5 clas="m-1">5. Cancelamento e Reembolso</h5>
+
+<p><strong>5.1</strong> Em caso de cancelamento de serviços, ou qualquer outra questão sobre a não
+prestação do serviço contratado, através do Software, entre os próprios Usuários, as
+políticas de cancelamento e reembolso serão regidas pelos termos acordados entre as
+partes envolvidas na contratação (Usuários), sem qualquer responsabilidade do
+Software sobre o quanto acordado entre elos e suas consequências.
+
+<strong>5.2</strong> O cancelamento do cadastro ou assinatura no Software, pode ser realizado a
+qualquer momento, sendo esse ato a manifesta vontade de não mais se beneficiar dos
+serviços do Software. Com isso, o Usuário fica ciente de que suas informações
+pessoais e outras inseridas no Software, serão arquivadas e o acesso ao Software e as
+informações contidas em seu acesso, serão encerrados.</p>
+
+<h5 clas="m-1">6. Propriedade Intelectual</h5>
+
+<p>Todos os direitos de propriedade intelectual relacionados ao Software são de
+propriedade exclusiva do próprio Software. O Usuário concorda em não copiar,
+modificar, distribuir, vender ou explorar comercialmente o Software sem autorização
+prévia por escrito da Empresa. Para utilização do Software, é concedida licença
+limitada, temporária, não exclusiva e não transferível para o Usuário, desde que o
+Usuário cumpra com o quanto previsto neste Termo de Uso.</p>
+
+<h5 clas="m-1">7. Modificações nos Termos</h5>
+
+<p>O Software se reserva o direito de modificar estes Termos de Uso a qualquer momento.
+As alterações serão efetivas após a publicação dos Termos revisados no Software. O
+uso contínuo do Software após tais alterações constitui aceitação dos novos Termos de
+Uso.</p>
+
+<h5 clas="m-1">8. Disposições Gerais</h5>
+
+<p>Estes Termos de Uso constituem o acordo integral entre o Usuário e o Software em
+relação ao uso do Software e substituem todos os acordos anteriores ou
+contemporâneos relacionados a este assunto. Se qualquer disposição destes Termos
+for considerada inválida ou inexequível, as demais disposições permanecerão em pleno
+vigor e efeito.</p>
+
+<h5 clas="m-1">9. Lei Aplicável</h5>
+
+<p>Estes Termos de Uso serão regidos e interpretados de acordo com as leis do Estado de
+São Paulo - Brasil, sem consideração a seus princípios de conflitos de leis.
+Ao utilizar o Software, você reconhece que leu, entendeu e concorda com estes Termos
+de Uso. Se tiver alguma dúvida sobre estes Termos, entre em contato conosco:
+noreply.rededobem@gmail.com</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

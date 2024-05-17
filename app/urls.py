@@ -26,7 +26,8 @@ def index(request):
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='landing_page'),
-    path('', include('accounts.urls')),    
+    path('', include('accounts.urls')),
     path('', include('calendars.urls')),
     path('', include('treatments.urls')),
+    path('', include('usage_agreement.urls')),
 ]
