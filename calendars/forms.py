@@ -9,6 +9,11 @@ class CalendarModelForm(forms.ModelForm):
         fields = ['week_day', 'schedule']
 
     widgets = {
-        'week_day': forms.Select(),
-        'schedule': forms.Select()
+        'week_day': forms.Select(attrs={'class': 'form-control'}),
+        'schedule': forms.Select(attrs={'class': 'form-control'})
     }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['week_day'].label = 'Dia da semana'
+        self.fields['schedule'].label = 'Horário'

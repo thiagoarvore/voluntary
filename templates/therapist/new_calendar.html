@@ -1,21 +1,20 @@
 {% extends "base.html" %}
-{% load widget_tweaks %}
 {% block content %}
 {% include "therapist/partials/navbar.html" %}
 
 <div class="container col-8 mx-auto">    
-    <form method="post">
-        {% csrf_token %}
-        {% for field in form %}                       
-            <div class="m-4">
-                {% if field == form.week_day %}<label>Dia da Semana:</label>{% else %}<label>Horário:</label>{% endif %}
-                
-                {% render_field field class="form-control" %}
-            </div>                
-        {% endfor %}
-        <div class="text-center m-4">
-            <input type="submit" class="btn btn-primary" value="Disponibilizar">
-        </div>
-    </form>
+    <div id="new_calendar_form">
+        {% include "therapist/partials/new_calendar_form.html" %}
+    </div>
 </div>
+<div class="my-4 text-center">
+    <button class="btn btn-success me-2" type="submit"
+        hx-get="{% url 'create_calendar' %}"
+        hx-target="#new_calendar_form"
+        hx-swap="beforeend">+ Adicionar horário</button>
+    <button type="submit" class="btn btn-primary" id="submit-all">Disponibilizar todos</button>
+</div>
+<div id="calendar_created" class="text-center">    
+</div>
+
 {% endblock content %}
