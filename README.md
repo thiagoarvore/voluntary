@@ -40,4 +40,15 @@
         <div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"><pre>python manage.py runserver</pre></div>            
         </div>
     </section>
+    <section>
+        <h2>Para enviar e-mails</h2>
+        <p>Crie um arquivo <code>.env</code> e configure:</p>
+        <ul>
+            <li>EMAIL_HOST_USER</li>
+            <li>EMAIL_HOST_PASSWORD</li>
+            <li>EMAIL_USE_TLS</li>
+            <li>EMAIL_PORT</li>
+            <li>EMAIL_HOST</li>
+        </ul>
+    </section>
 </body>
