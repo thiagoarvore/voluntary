@@ -1,5 +1,4 @@
 
-
 <body>
     <header>
         <h1>App fullstack para Ajuda Psicológica Voluntária</h1>
@@ -9,11 +8,11 @@
     <section>
         <h2>Tecnologias Utilizadas</h2>
         <ul>
-            <li><img src="https://skillicons.dev/icons?i=python" />Python: Ambiente de execução.</li>
-            <li><img src="https://skillicons.dev/icons?i=django" />Django: ORM facilitando o gerenciamento do banco de dados.</li>
-            <li><img src="https://skillicons.dev/icons?i=html" />HTML: Solução para desenvolvimento de frontend.</li>
-            <li><img src="https://skillicons.dev/icons?i=css" />CSS: Arte visual.</li>
-            <li><img src="https://skillicons.dev/icons?i=postgres" />POSTGRES: Banco de dados relacional confiável.</li>
+            <li><img src="https://skillicons.dev/icons?i=python" width="20" height="20"/> Python: Ambiente de execução.</li>
+            <li><img src="https://skillicons.dev/icons?i=django" width="20" height="20"/> Django: ORM facilitando o gerenciamento do banco de dados.</li>
+            <li><img src="https://skillicons.dev/icons?i=html" width="20" height="20"/> HTML: Solução para desenvolvimento de frontend.</li>
+            <li><img src="https://skillicons.dev/icons?i=css" width="20" height="20"/ >CSS: Arte visual.</li>
+            <li><img src="https://skillicons.dev/icons?i=postgres" width="20" height="20"/> POSTGRES: Banco de dados relacional confiável.</li>
         </ul>
     </section>
     <section>
