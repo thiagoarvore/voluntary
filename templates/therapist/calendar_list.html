@@ -1,42 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
 {% include "therapist/partials/navbar.html" %}
-<div class="container mx-auto">    
-    <div class="text-center">
-        <h3 class="m-3">Seus horários disponibilizados:</h3>
-    </div>
-        {% if dates %}
-            <table class="table table-striped">            
-                <thead>
-                    <tr>
-                        <th scope="col">Horário</th>
-                        <th scope="col">Horário ocupado</th>
-                        <th scope="col"><th>
-                        <th scope="col"></th>                   
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for day in dates %}                    
-                        {% if day.is_active %}
-                            <tr>                            
-                                <td scope="row"> {{day}} </td>                            
-                                <td scope="row"></td>
-                                <td scope="row"><button class="btn btn-primary" disabled>Reativar horário</button></td>
-                                <td scope="row"><a href="{% url 'delete_calendar' pk=day.id %}"><button class="btn btn-primary">Fechar horário</button></a></td>
-                            </tr>
-                        {% else %}
-                            <tr>                            
-                                <td scope="row"> {{day}} </td>                            
-                                <td scope="row">Ocupado</td>
-                                <td scope="row"><a href="{% url 'update_calendar' pk=day.id %}"><button class="btn btn-primary">Reativar horário</button></a></td>
-                                <td scope="row"><button class="btn btn-primary" disabled>Fechar horário</button></td>
-                            </tr>
-                        {% endif %}                    
-                    {% endfor %}
-                </tbody>
-            </table>
-        {% else %}
-            <p>Você não disponibilizou horários ainda</p>
-        {% endif %}        
+<div id="calendar_list" hx-get="{% url 'partial_calendar_list' %}" hx-trigger="load" hx-target="this" hx-swap="innerHTML"></div>
 </div>
 {% endblock content %}

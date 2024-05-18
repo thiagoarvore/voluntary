@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 {% include "patient/partials/navbar.html" %}
-<div class="container col-10 mx-auto">
+<div class="container col-10 mx-auto" id="calendar_options">
     {% if not options %}
         <div class="text-center m-4">
             <h3>Não há terapeutas ou horários disponíveis</h3>
@@ -54,13 +54,13 @@
                     <td scope="row">{{ option.therapist }}</td>
                     <td scope="row">{{ option }}</td>
                     <td>
-                        <a href="{% url 'new_treatment' therapist_id=option.therapist.id schedule_id=option.id %}">
-                            <button class="btn btn-primary">Agendar consulta</button>
-                        </a>  
+                        <button type="button" class="btn btn-primary"
+                        hx-get="{% url 'new_treatment' therapist_id=option.therapist.id schedule_id=option.id %}"
+                        hx-target="#calendar_options"
+                        hx-swap="innerHTML">Agendar consulta</button>  
                     </td>                              
                 </tr>
                 {% else %}
-
                 {% endif %}                                 
             {% endfor %}
             </tbody>

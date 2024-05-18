@@ -2,7 +2,6 @@ from django.urls import path
 from django.shortcuts import render
 
 
-
 def usage_agreement(request):
     return render(request, 'usage_agreement.html', {})
 
