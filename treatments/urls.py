@@ -8,7 +8,7 @@ urlpatterns = [
 ]
 
 htmx_urlpatterns = [
-path('partial/new_treatment/<str:therapist_id>/<str:schedule_id>/', views.create_treatment, name='new_treatment_form')
+    path('partial/new_treatment/<str:therapist_id>/<str:schedule_id>/', views.create_treatment, name='new_treatment_form')
 ]
 
 urlpatterns += htmx_urlpatterns

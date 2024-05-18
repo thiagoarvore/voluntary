@@ -3,7 +3,7 @@
 {% load widget_tweaks %}
 {% include "therapist/partials/navbar.html" %}
 <div class="container col-10 mx-auto">
-    <h1 class="text-center">Finalizar atendimento</h1>
+    <h1 class="text-center my-4">Finalizar atendimento</h1>
     <form method="post">
         {% csrf_token %}        
         <ul class="list-group col-4 mx-auto">
@@ -16,7 +16,7 @@
         <input type="hidden" name="therapist" value={{ user.profile.id }}>
         <div class="text-center m-3">
             
-            <button class="btn btn-primary" type="submit">Finalizar atendimento</button>
+            <button class="btn btn-primary my-3" type="submit">Finalizar atendimento</button>
         </div>
         {% if form.errors %}{{form.errors}}{% endif %}
     </form>

@@ -1,5 +1,5 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import ListView, DeleteView, UpdateView
+from django.shortcuts import render, get_object_or_404
+from django.views.generic import ListView, UpdateView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from .forms import CalendarModelForm
@@ -38,7 +38,6 @@ class CalendarFindView(ListView):
             else:
                 queryset = queryset.filter(week_day=search_week_day)
         return queryset
-
 
 
 @method_decorator(login_required(login_url='login'), name='dispatch')

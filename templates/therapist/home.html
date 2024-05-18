@@ -2,10 +2,9 @@
 {% block content %}
 {% include "therapist/partials/navbar.html" %}
 <div class="container col-11 m-1 mx-auto">
-    <div class="text-center m-2">
+    <div class="text-center my-3">
         <h1>Olá {{ user.profile }}</h1>
-    </div>
-    
+    </div>    
     {% if not user.profile.calendars.exists %}
         <div class="container m-3">
             <p>Você ainda não tem horários disponibilizados.</p>            
@@ -19,14 +18,14 @@
         <p>Você ainda não tem consultas marcadas.</p>            
     </div>
     {% else %}
-        <div class="m-4 col-6 mx-auto">
+        <div class="m-4 col-6 mx-auto mb-5">
             <div class="text-center">
                 <h3>Suas consultas marcadas</h3>
             </div>
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th scope="col" width="60%">Paciente</th>
+                        <th scope="col" width="70%">Paciente</th>
                         <th scope="col">Dia e Horário</th>
                     </tr>
                 </thead>

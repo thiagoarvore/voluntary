@@ -57,14 +57,14 @@ def create_treatment(request, therapist_id, schedule_id):
             return redirect('home')
     else:
         form = TreatmentModelForm()
-    
+
     context = {
-    'form': form,
-    'therapist': therapist,
-    'schedule': schedule,
-    'is_active': True,
-    'patient': request.user.profile
-}
+        'form': form,
+        'therapist': therapist,
+        'schedule': schedule,
+        'is_active': True,
+        'patient': request.user.profile
+    }
 
     return render(request, 'patient/partials/new_treatment_form.html', context)
 

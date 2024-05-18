@@ -1,17 +1,17 @@
-<h1 class="text-center"
+<h1 class="text-center my-4"
     >Reativar horário</h1>
 <form method="post"
         hx-post="{% url 'update_calendar' pk=calendar.id%}" 
         hx-on="htmx:afterRequest: this.remove()">
     {% csrf_token %}
-    <ul class="list-group col-4 mx-auto">
+    <ul class="list-group col-4 mx-auto my-3">
         <li class="list-group-item">Dia da semana: {{ week_day_name }}</li>
         <li class="list-group-item">Horário: {{ schedule_name }}</li>
     </ul>
     <input type="hidden" name="week_day" value="{{ calendar.week_day }}"> 
     <input type="hidden" name="schedule" value="{{ calendar.schedule }}">
     <div class="text-center m-3">            
-        <button class="btn btn-primary" type="submit">Reativar</button>
+        <button class="btn btn-primary my-5" type="submit">Reativar</button>
     </div>
     {% if form.errors %}{{form.errors}}{% endif %}
 </form>

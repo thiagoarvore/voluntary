@@ -2,41 +2,43 @@
     <h3 class="m-3">Seus horários disponibilizados:</h3>
 </div>
     {% if dates %}
-        <table class="table table-striped">            
-            <thead>
-                <tr>
-                    <th scope="col">Horário</th>
-                    <th scope="col"></th>
-                    <th scope="col"><th>
-                    <th scope="col"></th>                   
-                </tr>
-            </thead>
-            <tbody>
-                {% for day in dates %}                    
-                    {% if day.is_active %}
-                        <tr>                            
-                            <td scope="row"> {{day}} </td>                            
-                            <td scope="row"></td>
-                            <td scope="row"><button class="btn btn-primary" disabled>Reativar horário</button></td>
-                            <td scope="row"><button type="button" class="btn btn-primary"
-                                hx-get="{% url 'delete_calendar' pk=day.id %}"
-                                hx-target="#calendar_list"
-                                hx-swap="innerHTML">Fechar horário</button></td>
-                        </tr>
-                    {% else %}
-                        <tr>                            
-                            <td scope="row"> {{day}} </td>                            
-                            <td scope="row">Ocupado</td>
-                            <td scope="row"><button type="button" class="btn btn-primary"
-                                hx-get="{% url 'update_calendar' pk=day.id %}"
-                                hx-target="#calendar_list"
-                                hx-swap="innerHTML">Reativar horário</button></td>
-                            <td scope="row"><button class="btn btn-primary" disabled>Fechar horário</button></td>
-                        </tr>
-                    {% endif %}                    
-                {% endfor %}
-            </tbody>
-        </table>
+        <div class="col-7 mx-auto my-3">
+            <table class="table table-striped">            
+                <thead>
+                    <tr>
+                        <th scope="col">Horário</th>
+                        <th scope="col"></th>
+                        <th scope="col"><th>
+                        <th scope="col"></th>                   
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for day in dates %}                    
+                        {% if day.is_active %}
+                            <tr>                            
+                                <td scope="row"> {{day}} </td>                            
+                                <td scope="row"></td>
+                                <td scope="row"><button class="btn btn-primary" disabled>Reativar horário</button></td>
+                                <td scope="row"><button type="button" class="btn btn-primary"
+                                    hx-get="{% url 'delete_calendar' pk=day.id %}"
+                                    hx-target="#calendar_list"
+                                    hx-swap="innerHTML">Fechar horário</button></td>
+                            </tr>
+                        {% else %}
+                            <tr>                            
+                                <td scope="row"> {{day}} </td>                            
+                                <td scope="row">Ocupado</td>
+                                <td scope="row"><button type="button" class="btn btn-primary"
+                                    hx-get="{% url 'update_calendar' pk=day.id %}"
+                                    hx-target="#calendar_list"
+                                    hx-swap="innerHTML">Reativar horário</button></td>
+                                <td scope="row"><button class="btn btn-primary" disabled>Fechar horário</button></td>
+                            </tr>
+                        {% endif %}                    
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     {% else %}
         <p>Você não disponibilizou horários ainda</p>
     {% endif %} 
