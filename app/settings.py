@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'calendars',
     'ibge_data',
     'treatments',
-    'usage_agreement'
+    'usage_agreement',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [

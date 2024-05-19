@@ -7,29 +7,29 @@
             <h3>Não há terapeutas ou horários disponíveis</h3>
         </div>
     {% elif options %}
-    <div class="row m-4">
-        <div class="col-6">
+    <div class="row my-4">
+        <div class="col-md-6">
             <form style="margin: 10px;" method="GET" action="{% url 'find_therapist' %}" class="center-content">
-                <input  class="form-control" type="text" name="search_therapist">
-                <div class="text-center">
-                    <button class="btn btn-light m-2" type="submit">Buscar por terapeuta</button>
+                <div class="input-group">
+                    <input  class="form-control" type="text" name="search_therapist" placehoder="Nome" value="{{ request.GET.therapist }}">
+                    <button class="btn btn-primary" type="submit"><i class="bi bi-search"></i></button>
                 </div>
             </form>
         </div>
-        <div class="col-6">
+        <div class="col-md-6">
             <form style="margin: 10px;" method="GET" action="{% url 'find_therapist' %}" class="center-content">
-                <select class="form-select" name="search_week_day">
-                    <option value="1">Segunda-feira</option>
-                    <option value="2">Terça-feira</option>
-                    <option value="3">Quarta-feira</option>
-                    <option value="4">Quinta-feira</option>
-                    <option value="5">Sexta-feira</option>
-                    <option value="6">Sábado</option>
-                    <option value="7">Domingo</option>
-                    <option value="0">Todos os dias</option>
-                </select>
-                <div class="text-center">
-                    <button class="btn btn-light m-2" type="submit">Buscar por dia da semana</button>
+                <div class="input-group">
+                    <select class="form-select" name="search_week_day">
+                        <option value="1">Segunda-feira</option>
+                        <option value="2">Terça-feira</option>
+                        <option value="3">Quarta-feira</option>
+                        <option value="4">Quinta-feira</option>
+                        <option value="5">Sexta-feira</option>
+                        <option value="6">Sábado</option>
+                        <option value="7">Domingo</option>
+                        <option value="0">Todos os dias</option>
+                    </select>
+                    <button class="btn btn-primary" type="submit"><i class="bi bi-search"></i></button>
                 </div>
             </form>
         </div>
@@ -40,31 +40,33 @@
                 <td colspan="2" class="text-center">Não há terapeutas ou horários disponíveis</td>
             </tr>
         {% else %}
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col" width="40%">Terapeuta</th>
-                    <th scope="col">Dia e Horário</th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for option in options %}
-                {% if option.is_active %}
-                <tr>
-                    <td scope="row">{{ option.therapist }}</td>
-                    <td scope="row">{{ option }}</td>
-                    <td>
-                        <button type="button" class="btn btn-primary"
-                        hx-get="{% url 'new_treatment' therapist_id=option.therapist.id schedule_id=option.id %}"
-                        hx-target="#calendar_options"
-                        hx-swap="innerHTML">Agendar consulta</button>  
-                    </td>                              
-                </tr>
-                {% else %}
-                {% endif %}                                 
-            {% endfor %}
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col" width="40%">Terapeuta</th>
+                        <th scope="col">Dia e Horário</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for option in options %}
+                    {% if option.is_active %}
+                    <tr>
+                        <td scope="row">{{ option.therapist }}</td>
+                        <td scope="row">{{ option }}</td>
+                        <td>
+                            <button type="button" class="btn btn-primary"
+                            hx-get="{% url 'new_treatment' therapist_id=option.therapist.id schedule_id=option.id %}"
+                            hx-target="#calendar_options"
+                            hx-swap="innerHTML">Agendar consulta</button>  
+                        </td>                              
+                    </tr>
+                    {% else %}
+                    {% endif %}                                 
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
         {% endif %}
     </div>    
     {% endif %}
