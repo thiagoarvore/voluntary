@@ -5,25 +5,43 @@
     <div class="card-body text-center">
       <div class="col-7 mx-auto">
         <h5 class="card-title mb-4">Aqui você encontrará ajuda nesse momento de necessidade.</h5>
-        <div class="row mb-5">
-          <div class="col-6">
-            <div class="m-1">
-              <a href="{% url 'usage_agreement' %}">Termos de uso</a>
-            </div>
-            <div class="m-1">
-              <a href="{% url 'privacy_policy' %}">Política de privacidade</a>
-            </div>
+        <div class="d-block d-md-none mb-5">
+          <div class="m-1">
+            <a href="{% url 'usage_agreement' %}">Termos de uso</a>
           </div>
-        <div class="col-6">
+          <div class="m-1">
+            <a href="{% url 'privacy_policy' %}">Política de privacidade</a>
+          </div>
           <div class="m-1">
             <a href="{% url 'about_us' %}">Quem somos</a>
           </div>
           <div class="m-1">
-            <a href="https://www.instagram.com/rededobempsicologos/"><i class="bi bi-instagram"></i></a> <a href="https://www.instagram.com/rededobempsicologos/">@rededobempsicologos</a>        
+            <a href="https://www.instagram.com/rededobempsicologos/"><i class="bi bi-instagram"></i></a> 
+            <a href="https://www.instagram.com/rededobempsicologos/">@rededobempsicologos</a>        
+          </div>
+        </div>
+        
+        <!-- Versão para telas médias e maiores (colunas lado a lado) -->
+        <div class="row d-none d-md-flex mb-5">
+          <div class="col-md-6">
+            <div class="m-1">
+              <a class="text-decoration-none" href="{% url 'usage_agreement' %}">Termos de uso</a>
+            </div>
+            <div class="m-1">
+              <a class="text-decoration-none" href="{% url 'privacy_policy' %}">Política de privacidade</a>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="m-1">
+              <a class="text-decoration-none" href="{% url 'about_us' %}">Quem somos</a>
+            </div>
+            <div class="m-1">
+              <a class="text-decoration-none" href="https://www.instagram.com/rededobempsicologos/"><i class="bi bi-instagram"></i></a> 
+              <a class="text-decoration-none" href="https://www.instagram.com/rededobempsicologos/">@rededobempsicologos</a>        
+            </div>
           </div>
         </div>
       </div>
-    </div>
     <div class="card-footer text-body-secondary">
     Powered by Thiago Azevedo
     </div>

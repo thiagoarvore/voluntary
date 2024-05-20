@@ -6,6 +6,8 @@ from calendars.models import Calendar
 from accounts.models import Profile
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.urls import reverse_lazy
+
 
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
@@ -34,8 +36,8 @@ class TreatmentCreateView(CreateView):
         schedule_id = self.kwargs.get('schedule_id')
         therapist = get_object_or_404(Profile, id=therapist_id)
         schedule = get_object_or_404(Calendar, id=schedule_id)
-        form.instance.therapist = therapist.id
-        form.instance.schedule = schedule.id
+        form.instance.therapist = therapist
+        form.instance.schedule = schedule
         form.instance.patient = self.request.user.profile
         form.instance.is_active = True
         return super().form_valid(form)
@@ -54,7 +56,7 @@ def create_treatment(request, therapist_id, schedule_id):
             treatment.patient = request.user.profile
             treatment.is_active = True
             treatment.save()
-            return redirect('home')
+            return redirect(reverse_lazy('home'))
     else:
         form = TreatmentModelForm()
 

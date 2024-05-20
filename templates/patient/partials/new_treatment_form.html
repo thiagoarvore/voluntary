@@ -1,8 +1,8 @@
 {% load widget_tweaks %}
-<h1 class="text-center">Marcar Nova Consulta</h1>
-<form hx-post="{% url 'new_treatment_form' therapist_id=therapist.id schedule_id=schedule.id %}">
+<h1 class="text-center my-4">Marcar Nova Consulta</h1>
+<form method="post">
     {% csrf_token %}    
-    <ul class="list-group col-4 mx-auto">
+    <ul class="list-group col-md-4 mx-auto">
         <li class="list-group-item">Terapeuta: {{ therapist }}</li>
         <li class="list-group-item">Dia e Horário: {{ schedule }}</li>
     </ul>
@@ -11,7 +11,7 @@
     <input type="hidden" name="is_active" value="True">
     <input type="hidden" name="patient" value={{ user.profile.id }}>
     <div class="text-center m-3">
-        <button class="btn btn-primary" type="submit">Agendar Consulta</button>
+        <button id="submit_button" class="btn btn-primary my-3" type="submit">Agendar Consulta</button>
     </div>
     {% if form.errors %}{{form.errors}}{% endif %}
 </form>

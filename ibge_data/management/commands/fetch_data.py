@@ -10,11 +10,11 @@ class Command(BaseCommand):
         for state in data:
             name = state['nome']
             if not UF.objects.filter(name=name):
-                UF.objects.create(name=name)
+                UF.objects.get_or_create(name=name)
         cities_raw = requests.get('https://servicodados.ibge.gov.br/api/v1/localidades/municipios')
         city_data = cities_raw.json()
         for city in city_data:
             name = city['nome']
             uf_raw = city['regiao-imediata']['regiao-intermediaria']['UF']['nome']
             uf = UF.objects.get(name=uf_raw)
-            City.objects.create(name=name, UF=uf)
+            City.objects.get_or_create(name=name, UF=uf)

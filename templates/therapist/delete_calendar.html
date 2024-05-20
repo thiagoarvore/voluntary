@@ -1,9 +1,9 @@
 <form hx-post="{% url 'delete_calendar' pk=calendar.id %}" 
     hx-on="htmx:afterRequest: this.remove()">
     {% csrf_token %}
-    <div class="container col-10 mx-auto my-3">
+    <div class="container col-md-10 mx-auto my-3">
         <h1 class="text-center my-4">Indisponibilizar horário</h1>        
-        <ul class="list-group col-4 mx-auto">
+        <ul class="list-group col-md-4 mx-auto">
             <li class="list-group-item">Dia da semana: {{ calendar.week_day }}</li>
             <li class="list-group-item">Horário: {{ calendar.schedule }}</li>
         </ul>      

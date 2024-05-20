@@ -3,24 +3,27 @@
 {% block content %}
 {% include "partials/navbar.html" %}
 <div class="container mt-5">  
-  <div class="text-center m-5">
+  <div class="text-center flex my-5">
     <h2 class="m-5">Bem-vindo à Rede do Bem</h2>
   </div>
-  <div>
-    <card class="card mb-3 text-dark bg-light border-light mx-auto text-center col-8">
-      <h6>Neste momento, a Rede do Bem oferece apoio psicológico para dar suporte às Vítimas das Enchentes do Rio Grande do Sul que tiveram suas vidas afetadas em consequência das chuvas.
-      O formato será de Plantão Psicológico ou Intervenção Breve por até 12 sessões. Nosso objetivo é dar suporte como uma ação preventiva secundária de apoio, reconstrução e superação do trauma às vítimas, parentes, turistas e socorristas.</h6>
-    </card>          
-  </div>    
-  <div class="row mt-4 mb-4">
-    <div class="text-center col-6 mt-5">
-      <p class="lead m-3">Encontre o profissional que precisa.</p>    
-      <a class="btn btn-primary m-3" href="{% url 'signup' %}">Comece Agora</a>
+  <div class="row mb-2">
+    <!-- Div do card que será mostrada primeiro em telas pequenas e segunda em telas médias -->
+    <div class="order-2 order-md-1 col-12 col-md-8 mx-auto">
+      <card class="card mb-3 text-dark bg-light border-light text-center">
+        <p class="card-body">Neste momento, a Rede do Bem oferece apoio psicológico para dar suporte às Vítimas das Enchentes do Rio Grande do Sul que tiveram suas vidas afetadas em consequência das chuvas.
+        O formato será de Plantão Psicológico ou Intervenção Breve por até 12 sessões. Nosso objetivo é dar suporte como uma ação preventiva secundária de apoio, reconstrução e superação do trauma às vítimas, parentes, turistas e socorristas.</p>
+      </card> 
     </div>
-    <div class=" text-center col-6">
-      <img src="static\pareja-casada-que-tiene-problemas-su-relacion-estan-asistiendo-al-psicologo-busca-consejo.jpg" alt="Imagem de destaque" class="img-fluid" style="max-width: 90%; height: auto;"></img>
+    <!-- Div do texto e botão que será mostrada segunda em telas pequenas e primeira em telas médias -->
+    <div class="order-1 order-md-2 col-12 col-md-6 mt-3 text-center">
+      <p class="lead my-3">Encontre o profissional que precisa.</p>    
+      <a class="btn btn-primary mb-5 mt-md-5" href="{% url 'signup' %}">Comece Agora</a>
     </div>
-  </div>
+    <!-- Div da imagem que mantém a mesma ordem em todas as telas -->
+    <div class="order-3 col-12 col-md-6 text-center">
+      <img src="static/pareja-casada-que-tiene-problemas-su-relacion-estan-asistiendo-al-psicologo-busca-consejo.jpg" alt="Imagem de destaque" class="img-fluid" style="max-width: 90%; height: auto;">
+    </div> 
+  </div> 
 </div>
   
 {% endblock content %}

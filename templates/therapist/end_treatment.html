@@ -2,11 +2,11 @@
 {% block content %}
 {% load widget_tweaks %}
 {% include "therapist/partials/navbar.html" %}
-<div class="container col-10 mx-auto">
+<div class="container col-md-10 mx-auto">
     <h1 class="text-center my-4">Finalizar atendimento</h1>
     <form method="post">
         {% csrf_token %}        
-        <ul class="list-group col-4 mx-auto">
+        <ul class="list-group col-md-4 mx-auto">
             <li class="list-group-item">Paciente: {{ patient }}</li>
             <li class="list-group-item">Dia e Horário: {{ schedule }}</li>
         </ul>

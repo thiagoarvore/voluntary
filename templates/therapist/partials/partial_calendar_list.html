@@ -2,7 +2,7 @@
     <h3 class="m-3">Seus horários disponibilizados:</h3>
 </div>
     {% if dates %}
-        <div class="col-7 mx-auto my-3">
+        <div class="col-md-7 mx-auto my-3">
             <table class="table table-striped">            
                 <thead>
                     <tr>
@@ -40,5 +40,8 @@
             </table>
         </div>
     {% else %}
-        <p>Você não disponibilizou horários ainda</p>
+        <p class="text-center">Você não disponibilizou horários ainda</p>
+        <div class="text-center m-2">
+            <a class="btn btn-primary mb-4" href="{% url 'new_calendar' %}">Disponibilizar horário</a>
+        </div>
     {% endif %} 

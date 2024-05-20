@@ -5,14 +5,14 @@
     hx-on="htmx:afterRequest: this.remove()"
     hx-trigger="click from:#submit-all">
     {% csrf_token %}
-    <div class="row">
+    <div class="row form-row">
         {% for field in form %}        
-            <div class="col-4 col-md-3 my-2 mx-auto">
-                <label for="{{ field.id_for_label }}">{{field.label_tag}}</label>
-                {% render_field field class="form-control" %}                
+            <div class="col-md-3 my-1 mx-auto col-4">
+                <label class="form-label" for="{{ field.id_for_label }}">{{field.label_tag}}</label>                
+                {% render_field field class="form-control m-1" %}                 
             </div>
         {% endfor %}
-        <div class="col-3 align-self-end my-2">
+        <div class="col-md-3 col-4 align-self-end">
             <button type="button" class="btn btn-danger"
                 hx-on="click: this.closest('form').remove()">Cancelar</button>
         </div>

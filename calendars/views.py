@@ -1,3 +1,5 @@
+from typing import Any
+from django.db.models.query import QuerySet
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, UpdateView
 from django.contrib.auth.decorators import login_required
@@ -11,6 +13,10 @@ class CalendarListView(ListView):
     model = Calendar
     template_name = 'therapist/calendar_list.html'
     context_object_name = 'dates'
+
+    def get_queryset(self):
+        queryset = Calendar.objects.filter(is_active=True)
+        return super().get_queryset()
 
 
 @method_decorator(login_required(login_url='login'), name='dispatch')

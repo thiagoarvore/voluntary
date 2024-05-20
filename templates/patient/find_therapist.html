@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 {% include "patient/partials/navbar.html" %}
-<div class="container col-10 mx-auto" id="calendar_options">
+<div class="container col-md-10 mx-auto" id="calendar_options">
     {% if not options %}
         <div class="text-center m-4">
             <h3>Não há terapeutas ou horários disponíveis</h3>
@@ -10,9 +10,9 @@
     <div class="row my-4">
         <div class="col-md-6">
             <form style="margin: 10px;" method="GET" action="{% url 'find_therapist' %}" class="center-content">
-                <div class="input-group">
-                    <input  class="form-control" type="text" name="search_therapist" placehoder="Nome" value="{{ request.GET.therapist }}">
-                    <button class="btn btn-primary" type="submit"><i class="bi bi-search"></i></button>
+                <div class="input-group">                     
+                    <input  class="form-control" type="text" name="search_therapist" placeholder="Digite o nome do terapeuta">                    
+                    <button class="btn btn-primary" type="submit"><i class="bi bi-search"></i></button>                   
                 </div>
             </form>
         </div>
@@ -20,6 +20,7 @@
             <form style="margin: 10px;" method="GET" action="{% url 'find_therapist' %}" class="center-content">
                 <div class="input-group">
                     <select class="form-select" name="search_week_day">
+                        <option value="" disabled selected>Selecione um dia da semana</option>
                         <option value="1">Segunda-feira</option>
                         <option value="2">Terça-feira</option>
                         <option value="3">Quarta-feira</option>
@@ -34,7 +35,7 @@
             </form>
         </div>
     </div>
-    <div class="m-4 col-8 mx-auto">
+    <div class="m-4 col-md-8 mx-auto overflow-auto">
         {% if not options %}
             <tr>
                 <td colspan="2" class="text-center">Não há terapeutas ou horários disponíveis</td>
@@ -55,13 +56,9 @@
                         <td scope="row">{{ option.therapist }}</td>
                         <td scope="row">{{ option }}</td>
                         <td>
-                            <button type="button" class="btn btn-primary"
-                            hx-get="{% url 'new_treatment' therapist_id=option.therapist.id schedule_id=option.id %}"
-                            hx-target="#calendar_options"
-                            hx-swap="innerHTML">Agendar consulta</button>  
+                            <a class="btn btn-primary" href="{% url 'new_treatment' therapist_id=option.therapist.id schedule_id=option.id %}">Agendar consulta</a>  
                         </td>                              
                     </tr>
-                    {% else %}
                     {% endif %}                                 
                 {% endfor %}
                 </tbody>

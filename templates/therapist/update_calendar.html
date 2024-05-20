@@ -1,10 +1,9 @@
 <h1 class="text-center my-4"
     >Reativar horário</h1>
-<form method="post"
-        hx-post="{% url 'update_calendar' pk=calendar.id%}" 
+<form hx-post="{% url 'update_calendar' pk=calendar.id%}" 
         hx-on="htmx:afterRequest: this.remove()">
     {% csrf_token %}
-    <ul class="list-group col-4 mx-auto my-3">
+    <ul class="list-group col-md-4 mx-auto my-3">
         <li class="list-group-item">Dia da semana: {{ week_day_name }}</li>
         <li class="list-group-item">Horário: {{ schedule_name }}</li>
     </ul>

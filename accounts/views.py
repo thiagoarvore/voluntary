@@ -128,10 +128,13 @@ class ProfileUpdateView(UpdateView):
 def home_view(request):
     treatments = Treatment.objects.none()
     if request.user.profile.crp:
-        treatments = Treatment.objects.filter(therapist=request.user.profile, is_active=True)
+        treatments = Treatment.objects.filter(patient=request.user.profile.id, is_active=True)
     if request.user.profile.age:
-        treatments = Treatment.objects.filter(patient=request.user.profile, is_active=True)
-    return render(request, 'home.html', {'treatments': treatments})
+        treatments = Treatment.objects.filter(patient=request.user.profile.id, is_active=True)
+    context ={
+        'treatments': treatments,
+    }
+    return render(request, 'home.html', context)
 
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
