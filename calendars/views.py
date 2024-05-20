@@ -15,8 +15,8 @@ class CalendarListView(ListView):
     context_object_name = 'dates'
 
     def get_queryset(self):
-        queryset = Calendar.objects.filter(is_active=True)
-        return super().get_queryset()
+        queryset = Calendar.objects.filter(therapist=self.request.user.profile, is_active=True)
+        return queryset
 
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
@@ -24,6 +24,10 @@ class CalendarPartialListView(ListView):
     model = Calendar
     template_name = 'therapist/partials/partial_calendar_list.html'
     context_object_name = 'dates'
+
+    def get_queryset(self):
+        queryset = Calendar.objects.filter(therapist=self.request.user.profile, is_active=True)
+        return queryset
 
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
@@ -33,7 +37,7 @@ class CalendarFindView(ListView):
     context_object_name = 'options'
 
     def get_queryset(self):
-        queryset = Calendar.objects.filter(is_active=True)
+        queryset = Calendar.objects.filter(is_active=True).select_related('therapist')
         search_therapist = self.request.GET.get('search_therapist')
         search_week_day = self.request.GET.get('search_week_day')
         if search_therapist:

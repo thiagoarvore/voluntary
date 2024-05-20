@@ -131,7 +131,7 @@ def home_view(request):
         treatments = Treatment.objects.filter(patient=request.user.profile.id, is_active=True)
     if request.user.profile.age:
         treatments = Treatment.objects.filter(patient=request.user.profile.id, is_active=True)
-    context ={
+    context = {
         'treatments': treatments,
     }
     return render(request, 'home.html', context)

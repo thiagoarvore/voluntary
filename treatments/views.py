@@ -9,7 +9,6 @@ from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
 
 
-
 @method_decorator(login_required(login_url='login'), name='dispatch')
 class TreatmentCreateView(CreateView):
     model = Treatment

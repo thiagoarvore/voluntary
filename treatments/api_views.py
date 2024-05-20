@@ -8,6 +8,6 @@ class TreatmentListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = TreatmentSerializer
 
 
-class TreatmentRetrieveUppdateDestroyAPIView( generics.RetrieveUpdateDestroyAPIView):
+class TreatmentRetrieveUppdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Treatment.objects.all()
     serializer_class = TreatmentSerializer
