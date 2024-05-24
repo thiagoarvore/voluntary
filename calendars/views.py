@@ -15,7 +15,7 @@ class CalendarListView(ListView):
     context_object_name = 'dates'
 
     def get_queryset(self):
-        queryset = Calendar.objects.filter(therapist=self.request.user.profile, is_active=True)
+        queryset = Calendar.objects.filter(therapist=self.request.user.profile)
         return queryset
 
 
@@ -26,7 +26,7 @@ class CalendarPartialListView(ListView):
     context_object_name = 'dates'
 
     def get_queryset(self):
-        queryset = Calendar.objects.filter(therapist=self.request.user.profile, is_active=True)
+        queryset = Calendar.objects.filter(therapist=self.request.user.profile)
         return queryset
 
 
@@ -69,6 +69,7 @@ class CalendarUpdateView(UpdateView):
         return super().form_valid(form)
 
 
+# Criar um get_or_create
 @login_required(login_url='login')
 def create_calendar(request):
     if request.method == 'POST':
@@ -107,7 +108,7 @@ def update_calendar(request, pk):
     calendar = get_object_or_404(Calendar, pk=pk)
     if request.method == 'POST':
         calendar.is_active = True
-        calendar.save()
+        calendar.save(update_fields=['is_active'])
         queryset = Calendar.objects.filter(therapist=request.user.profile).order_by('week_day')
         context = {'dates': queryset}
         return render(request, 'therapist/partials/partial_calendar_list.html', context)

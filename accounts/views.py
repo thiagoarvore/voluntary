@@ -128,7 +128,7 @@ class ProfileUpdateView(UpdateView):
 def home_view(request):
     treatments = Treatment.objects.none()
     if request.user.profile.crp:
-        treatments = Treatment.objects.filter(patient=request.user.profile.id, is_active=True)
+        treatments = Treatment.objects.filter(therapist=request.user.profile.id, is_active=True)
     if request.user.profile.age:
         treatments = Treatment.objects.filter(patient=request.user.profile.id, is_active=True)
     context = {
