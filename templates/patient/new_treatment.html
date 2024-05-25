@@ -1,20 +1,80 @@
 {% extends "base.html" %}
 {% block content %}
+{% include "patient/partials/navbar.html" %}
 {% load widget_tweaks %}
-<h1 class="text-center my-4">Marcar Nova Consulta</h1>
-<form method="post">
-    {% csrf_token %}
-    <ul class="list-group col-md-4 mx-auto">
-        <li class="list-group-item">Terapeuta: {{ therapist }}</li>
-        <li class="list-group-item">Dia e Horário: {{ schedule }}</li>
-    </ul>
-    <input type="hidden" name="therapist" value="{{ therapist.id }}">
-    <input type="hidden" name="schedule" value="{{ schedule.id }}">
-    <input type="hidden" name="is_active" value="True">
-    <input type="hidden" name="patient" value={{ user.profile.id }}>
-    <div class="text-center m-3">
-        <button id="submit_button" class="btn btn-primary my-3" type="submit">Agendar Consulta</button>
+{% load sweetify %}
+{% sweetify %}
+{% if messages %}
+
+{% endif %}
+<div id="treatment_container">    
+    <form method="post" id="treatment_form">
+        <h1 class="text-center my-4">Marcar Nova Consulta</h1>
+        {% csrf_token %}
+        <ul class="list-group col-md-4 mx-auto">
+            <li class="list-group-item">Terapeuta: {{ therapist }}</li>
+            <li class="list-group-item">Dia e Horário: {{ schedule }}</li>
+        </ul>
+        <input type="hidden" name="therapist" value="{{ therapist.id }}">
+        <input type="hidden" name="schedule" value="{{ schedule.id }}">
+        <input type="hidden" name="is_active" value="True">
+        <input type="hidden" name="patient" value={{ user.profile.id }}>
+        <div class="text-center m-3">
+            <button id="submit_button" class="btn btn-primary my-3" type="submit">Agendar Consulta</button>
+        </div>
+        {% if form.errors %}{{form.errors}}{% endif %}
+    </form>
+</div>
+<div id="loadingModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Por favor, aguarde...</h5>
+            </div>
+            <div class="modal-body">
+                <p>Estamos enviando um e-mail com as instruções para seu atendimento.</p>
+            </div>
+        </div>
     </div>
-    {% if form.errors %}{{form.errors}}{% endif %}
-</form>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var form = document.getElementById("treatment_form");
+        var loadingModal = document.getElementById("loadingModal");
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            // Exibe o modal
+            loadingModal.style.display = "block";
+
+            // Cria uma solicitação AJAX para enviar o formulário
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", form.action, true);
+            xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    // Oculta o modal após receber a resposta
+                    loadingModal.style.display = "none";
+                    if (xhr.status === 200) {
+                        // Redireciona ou mostra uma mensagem de sucesso
+                        window.location.href = "{% url 'home' %}";
+                    } else {
+                        // Lida com o erro
+                        alert("Ocorreu um erro ao enviar o formulário.");
+                    }
+                }
+            };
+
+            // Coleta os dados do formulário
+            var formData = new FormData(form);
+            var encodedData = new URLSearchParams(formData).toString();
+
+            // Envia a solicitação AJAX
+            xhr.send(encodedData);
+        });
+    });
+</script>
 {% endblock content %}

@@ -1,29 +1,34 @@
-from django.views.generic import CreateView, UpdateView, ListView
 from .models import Treatment
 from .forms import TreatmentModelForm
-from django.shortcuts import get_object_or_404, redirect, render
 from calendars.models import Calendar
 from accounts.models import Profile
+from django.shortcuts import get_object_or_404, render
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
+from django.views.generic import CreateView, UpdateView, ListView
+from sweetify.views import SweetifySuccessMixin
+
+
+@login_required(login_url='login')
+def sending_mail(request):
+    return render(request, 'patient/partials/sending_mail.html')
 
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
-class TreatmentCreateView(CreateView):
+class TreatmentCreateView(SweetifySuccessMixin, CreateView):
     model = Treatment
     form_class = TreatmentModelForm
     template_name = 'patient/new_treatment.html'
-    success_url = '/home/'
+    success_url = reverse_lazy('home')
+
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         therapist_id = self.kwargs.get('therapist_id')
         schedule_id = self.kwargs.get('schedule_id')
-
         therapist = get_object_or_404(Profile, id=therapist_id)
         schedule = get_object_or_404(Calendar, id=schedule_id)
-
         context['therapist'] = therapist
         context['schedule'] = schedule
         context['is_active'] = True
@@ -39,67 +44,7 @@ class TreatmentCreateView(CreateView):
         form.instance.schedule = schedule
         form.instance.patient = self.request.user.profile
         form.instance.is_active = True
-        return super().form_valid(form)
-
-
-def create_treatment(request, therapist_id, schedule_id):
-    therapist = get_object_or_404(Profile, id=therapist_id)
-    schedule = get_object_or_404(Calendar, id=schedule_id)
-    print(therapist.id, schedule)
-    if request.method == 'POST':
-        form = TreatmentModelForm(request.POST)
-        if form.is_valid():
-            treatment = form.save(commit=False)
-            treatment.therapist = therapist
-            treatment.schedule = schedule
-            treatment.patient = request.user.profile
-            treatment.is_active = True
-            treatment.save()
-            return redirect(reverse_lazy('home'))
-    else:
-        form = TreatmentModelForm()
-
-    context = {
-        'form': form,
-        'therapist': therapist,
-        'schedule': schedule,
-        'is_active': True,
-        'patient': request.user.profile
-    }
-
-    return render(request, 'patient/partials/new_treatment_form.html', context)
-
-
-@method_decorator(login_required(login_url='login'), name='dispatch')
-class TreatmentPartialCreateView(CreateView):
-    model = Treatment
-    form_class = TreatmentModelForm
-    template_name = 'patient/partials/new_treatment_form.html'
-    success_url = '/home/'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        therapist_id = self.kwargs.get('therapist_id')
-        schedule_id = self.kwargs.get('schedule_id')
-
-        therapist = get_object_or_404(Profile, id=therapist_id)
-        schedule = get_object_or_404(Calendar, id=schedule_id)
-
-        context['therapist'] = therapist
-        context['schedule'] = schedule
-        context['is_active'] = True
-        context['patient'] = self.request.user.profile
-        return context
-
-    def form_valid(self, form):
-        therapist_id = self.kwargs.get('therapist_id')
-        schedule_id = self.kwargs.get('schedule_id')
-        therapist = get_object_or_404(Profile, id=therapist_id)
-        schedule = get_object_or_404(Calendar, id=schedule_id)
-        form.instance.therapist = therapist
-        form.instance.schedule = schedule
-        form.instance.patient = self.request.user.profile
-        form.instance.is_active = True
+        self.object = form.save()
         return super().form_valid(form)
 
 

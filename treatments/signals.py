@@ -3,6 +3,8 @@ from django.dispatch import receiver
 from django.core.mail import send_mail
 from .models import Treatment
 from calendars.models import Calendar
+from datetime import datetime
+from services.mail import Mail
 
 
 @receiver(post_save, sender=Treatment)
@@ -12,19 +14,26 @@ def create_user_profile(sender, instance, created, **kwargs):
         calendar = Calendar.objects.get(pk=schedule_id)
         calendar.is_active = False
         calendar.save()
+        
+
+@receiver(post_save, sender=Treatment)
+def send_mail_event(sender, instance, created, **kwargs):
+    if created:
+        mail = Mail()
         schedule = instance.schedule
         therapist = instance.therapist
+        therapist_whatsapp = therapist.whatsapp
+        therapist_email = therapist.user.email
         patient = instance.patient
-        from_mail = 'noreply.rededobem@gmail.com'
-        send_mail(
-            subject='Você tem uma nova consulta marcada!',
-            message=f'Você agendou uma consulta com {therapist}: {schedule}. Agora você pode entrar em contato pelo whatsapp: {therapist.whatsapp} e combinar como vocês conversarão.',
-            from_email=from_mail,
-            recipient_list=[str(patient.user.email)]
-        )
-        send_mail(
-            'Você tem uma nova consulta marcada!',
-            f'{patient} agendou uma consulta com você: {schedule}. Aguarde o contato do paciente para combinar como vocês conversarão. Caso o paciente não entre em contato, o atendimento não ocorra ou por qualquer motivo o atendimento se encerre, não se esqueça de reabrir o horário para outros pacientes na plataforme Rede do Bem.',
-            from_email=from_mail,
-            recipient_list=[str(therapist.user.email)]
-        )
+        patient_email = patient.user.email
+        data = {
+            'therapist': therapist,
+            'therapist_email': therapist_email,
+            'therapist_whatsapp': therapist_whatsapp,
+            'patient': patient,
+            'patient_email': patient_email,
+            'schedule': schedule,
+            'event_type': 'treatment_creation',
+            'timestamp': datetime.now().strftime("%m/%d/%Y, %H:%M:%S"),
+        }
+        mail.send(data)
