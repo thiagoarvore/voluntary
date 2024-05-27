@@ -7,11 +7,10 @@ class CalendarModelForm(forms.ModelForm):
     class Meta:
         model = Calendar
         fields = ['week_day', 'schedule']
-
-    widgets = {
-        'week_day': forms.Select(attrs={'class': 'form-control'}),
-        'schedule': forms.Select(attrs={'class': 'form-control'})
-    }
+        widgets = {
+            'week_day': forms.Select(attrs={'class': 'form-control'}),
+            'schedule': forms.Select(attrs={'class': 'form-control'})
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

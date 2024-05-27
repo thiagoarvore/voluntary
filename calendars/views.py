@@ -1,5 +1,3 @@
-from typing import Any
-from django.db.models.query import QuerySet
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, UpdateView
 from django.contrib.auth.decorators import login_required
@@ -69,11 +67,10 @@ class CalendarUpdateView(UpdateView):
         return super().form_valid(form)
 
 
-# Criar um get_or_create
 @login_required(login_url='login')
 def create_calendar(request):
     if request.method == 'POST':
-        form = CalendarModelForm(request.POST or None)
+        form = CalendarModelForm(request.POST)
         if form.is_valid():
             calendar = form.save(commit=False)
             calendar.therapist = request.user.profile
@@ -84,8 +81,9 @@ def create_calendar(request):
 
 @login_required(login_url='login')
 def create_calendar_page(request):
+    form = CalendarModelForm() 
     context = {
-        'form': CalendarModelForm(),
+        'form': form,
         'calendar': Calendar.objects.filter(therapist=request.user.profile)
     }
     return render(request, 'therapist/new_calendar.html', context)

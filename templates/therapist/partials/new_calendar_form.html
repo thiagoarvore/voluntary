@@ -9,12 +9,19 @@
         {% for field in form %}        
             <div class="col-md-3 my-1 mx-auto col-4">
                 <label class="form-label" for="{{ field.id_for_label }}">{{field.label_tag}}</label>                
-                {% render_field field class="form-control m-1" %}                 
+                {% render_field field class="form-control m-1" %}              
             </div>
         {% endfor %}
         <div class="col-md-3 col-4 align-self-end">
             <button type="button" class="btn btn-danger"
                 hx-on="click: this.closest('form').remove()">Cancelar</button>
+        </div>
+        <div>
+            {% if form.errors %}
+                {% for error in form.errors %}
+                    {{ error }}
+                {% endfor %}
+            {% endif %}
         </div>
     </div>
 </form>

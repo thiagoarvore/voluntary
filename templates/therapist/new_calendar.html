@@ -14,6 +14,15 @@
         hx-swap="beforeend">+ Adicionar horário</button>
     <button type="submit" class="btn btn-primary" id="submit-all">Disponibilizar todos</button>
 </div>
-<div id="calendar_created" class="text-center">    
+<div id="calendar_created" class="text-center">
+      
 </div>
+<div>
+    {% if form.errors %}
+        {% for error in form.errors %}
+            {{ error }}
+        {% endfor %}
+    {% endif %}
+</div>  
+
 {% endblock content %}

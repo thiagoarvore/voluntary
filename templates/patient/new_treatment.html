@@ -4,10 +4,8 @@
 {% load widget_tweaks %}
 {% load sweetify %}
 {% sweetify %}
-{% if messages %}
 
-{% endif %}
-<div id="treatment_container">    
+<div id="treatment_container" class="col-md-10 mx-auto">    
     <form method="post" id="treatment_form">
         <h1 class="text-center my-4">Marcar Nova Consulta</h1>
         {% csrf_token %}
@@ -19,10 +17,15 @@
         <input type="hidden" name="schedule" value="{{ schedule.id }}">
         <input type="hidden" name="is_active" value="True">
         <input type="hidden" name="patient" value={{ user.profile.id }}>
+        {% if existing_treatment %}
+        <div class="text-center m-3 col-md-4 mx-auto">
+            <h5 class="alert alert-dark" role="alert">Você já está em tratamento</h5>
+        </div>
+        {% else %}
         <div class="text-center m-3">
             <button id="submit_button" class="btn btn-primary my-3" type="submit">Agendar Consulta</button>
         </div>
-        {% if form.errors %}{{form.errors}}{% endif %}
+        {% endif %}
     </form>
 </div>
 <div id="loadingModal" class="modal" tabindex="-1" role="dialog">
@@ -40,13 +43,20 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         var form = document.getElementById("treatment_form");
-        var loadingModal = document.getElementById("loadingModal");
 
         form.addEventListener("submit", function(event) {
             event.preventDefault();
 
-            // Exibe o modal
-            loadingModal.style.display = "block";
+            // Exibe o SweetAlert
+            Swal.fire({
+                title: 'Por favor, aguarde...',
+                text: 'Estamos enviando um e-mail com as instruções para seu atendimento.',
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                onBeforeOpen: () => {
+                    Swal.showLoading();
+                }
+            });
 
             // Cria uma solicitação AJAX para enviar o formulário
             var xhr = new XMLHttpRequest();
@@ -56,14 +66,25 @@
 
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4) {
-                    // Oculta o modal após receber a resposta
-                    loadingModal.style.display = "none";
+                    Swal.close();  // Oculta o SweetAlert após receber a resposta
                     if (xhr.status === 200) {
-                        // Redireciona ou mostra uma mensagem de sucesso
-                        window.location.href = "{% url 'home' %}";
+                        // Redireciona para a URL de sucesso
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Sucesso!',
+                            text: 'Você receberá um e-mail com as instruções para seu atendimento.',
+                            timer: 3000,
+                            showConfirmButton: false
+                        }).then(() => {
+                            window.location.href = "{% url 'home' %}";
+                        });
                     } else {
                         // Lida com o erro
-                        alert("Ocorreu um erro ao enviar o formulário.");
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Erro',
+                            text: 'Ocorreu um erro ao enviar o formulário.'
+                        });
                     }
                 }
             };
