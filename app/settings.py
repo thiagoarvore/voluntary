@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
     'auditlog',
     'django_htmx',
+    'rest_framework',
     'sweetify',
     'widget_tweaks',
 
@@ -50,8 +51,7 @@ INSTALLED_APPS = [
     'ibge_data',
     'services',
     'treatments',
-    'usage_agreement',
-    'rest_framework',
+    'usage_agreement',    
 ]
 
 MIDDLEWARE = [

@@ -37,6 +37,11 @@
         <label>Telefone para emergencias:</label>
         {% render_field form.emergency_number class="form-control" %}
     </div>
+    <div class="m-4">
+        <label>Descreva brevemente suas queixas:</label>
+        {% render_field form.complaint class="form-control" %}
+    </div>
+    
     <div class="container text-center mb-4">            
         <input type="submit" value="Cadastrar" class="btn btn-primary mx-auto">
     </div>

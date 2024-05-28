@@ -36,12 +36,27 @@ class ProfileModelForm(forms.ModelForm):
         model = Profile
         fields = [
             'photo', 'address', 'name', 'whatsapp', 'uf',
-            'city', 'age', 'complaint', 'psychiatric',
+            'city', 'age', 'complaint', 'psychiatric', 'e_psi',
             'emergency_number', 'crp', 'crp_check', 'platform', 'trained',
         ]
         widgets = {
-            'city': forms.Select(attrs={}),
+            'city': forms.Select(),
             'uf': forms.Select(),
+        }
+        labels = {
+            'address': 'Endereço',
+            'name': 'Nome',
+            'uf': 'Estado',
+            'city': 'Cidade',
+            'age': 'Idade',
+            'complaint': 'Queixas',
+            'psychiatric': 'Acompanhamento psiquiátrico',
+            'e_psi': 'Link para termo preenchido de cadastro do e-Psi',
+            'emergency_number': 'Contato para emergências',
+            'crp': 'CRP',
+            'platform': 'Plataforma preferida',
+            'crp_check': 'Está de acordo com as diretrizes do CRP',
+            'trained': 'Possui treinamento de atendimento de emergência',
         }
 
     def __init__(self, *args, **kwargs):

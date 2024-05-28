@@ -93,14 +93,15 @@ class ProfileView(DetailView):
             'Telefone Celular': profile.whatsapp,
             'Cidade': profile.city,
             'UF': profile.uf,
-            'age': profile.age,
-            'complaint': profile.complaint,
-            'psychiatric': profile.psychiatric,
+            'Idade': profile.age,
+            'Queixas': profile.complaint,
+            'Tratamento psiquiátrico': profile.get_psychiatric_display,
             'CRP': profile.crp,
-            'emergency_number': profile.emergency_number,
+            'Contato de emergência': profile.emergency_number,
             'Plataforma preferida': profile.platform,
-            'De acordo com as diretrizes do CRP': profile.crp_check,
-            'Tem treinamento especializado em emergência': profile.trained
+            'De acordo com as diretrizes do CRP': profile.get_crp_check_display(),
+            'Tem treinamento especializado em emergência': profile.get_trained_display(),
+            'Link para termo preenchido de cadastro do e-Psi': profile.e_psi
         }
         context['fields'] = fields
         return context

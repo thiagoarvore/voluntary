@@ -6,10 +6,13 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'new_calendar' %}">Disponibilizar Horário</a>
-          </li>
-          
+          {% if user.profile.crp_check %}
+            {% if user.profile.trained %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'new_calendar' %}">Disponibilizar Horário</a>
+              </li>   
+            {% endif %} 
+          {% endif %}      
           {% if user.profile.calendars.exists %}
             <li class="nav-item">
               <a class="nav-link" href="{% url 'calendar_list' %}">Horários disponíveis</a>

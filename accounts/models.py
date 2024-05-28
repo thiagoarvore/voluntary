@@ -5,6 +5,10 @@ from auditlog.models import AuditlogHistoryField
 from auditlog.registry import auditlog
 from ibge_data.models import UF, City
 
+BOOL_CHOICES = [
+    (True, 'Sim'),
+    (False, 'Não'),
+]
 
 PLATFORMS = {
     'Whatsapp': 'Whatsapp',
@@ -31,14 +35,15 @@ class Profile(models.Model):
     age = models.PositiveSmallIntegerField(null=True, blank=True)
     address = models.CharField(max_length=200, null=True, blank=True)
     complaint = models.TextField(null=True, blank=True)
-    psychiatric = models.BooleanField(null=True, blank=True)
+    psychiatric = models.BooleanField(null=True, blank=True, choices=BOOL_CHOICES)
     emergency_number = models.CharField(max_length=20, null=True, blank=True)
 
     # therapist user
     crp = models.CharField(max_length=20, null=True, blank=True)
+    e_psi = models.URLField(null=True, blank=True)
     platform = models.CharField(max_length=50, choices=PLATFORMS, null=True, blank=True)
-    crp_check = models.BooleanField(null=True, blank=True)
-    trained = models.BooleanField(null=True, blank=True)
+    crp_check = models.BooleanField(null=True, blank=True, choices=BOOL_CHOICES)
+    trained = models.BooleanField(null=True, blank=True, choices=BOOL_CHOICES)
 
     def __str__(self):
         return str(self.name)

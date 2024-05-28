@@ -13,14 +13,14 @@
     <form method='post'>
         {% csrf_token %}
         {% for field in form %}
-            {% if field.value %}                
+            {% if field.value or field == form.trained or field == form.crp_check%}                
                 {% if field != form.photo %}
                 <div class="m-4">
                     <label>{{ field.label }}:</label>
                     {% render_field field class="form-control" %}
                 </div>                
                 {% endif %}                
-            {% endif %}
+            {% endif %}            
         {% endfor %}
         <div class="m-4 text-center">
             <input class="btn btn-primary" type="submit">
