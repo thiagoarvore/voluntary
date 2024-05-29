@@ -21,7 +21,14 @@
                 {% if field.name == 'username' %}
                     <p class="form-text text-muted">Este será seu nome de usuário único, e será apenas utilizado para login.</p>
                 {% endif %}
-                {% render_field field class="form-control" %}                
+                {% if field.name == 'password1' or field.name == 'password2' %}
+                    <div class="password-container position-relative">
+                        {% render_field field class="form-control" %}
+                        <span class="toggle-password position-absolute" style="right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;" data-target="#{{ field.id_for_label }}">👁️</span>
+                    </div>
+                {% else %}
+                    {% render_field field class="form-control" %} 
+                {% endif %}               
             </div>
         {% endfor %}
         <div class="m-4 text-center flex-row">
@@ -33,6 +40,19 @@
     </form>
 </div>
 <script>
+    document.querySelectorAll('.toggle-password').forEach(item => {
+        item.addEventListener('click', function() {
+            const target = document.querySelector(this.getAttribute('data-target'));
+            if (target.getAttribute('type') === 'password') {
+                target.setAttribute('type', 'text');
+                this.textContent = '🙈';
+            } else {
+                target.setAttribute('type', 'password');
+                this.textContent = '👁️';
+            }
+        });
+    });
+
     const checkbox = document.getElementById('id_acceptance');
     const button = document.getElementById('submit_button');
 

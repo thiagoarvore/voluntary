@@ -20,8 +20,15 @@
                 <div class="m-2">
                     {{ field.label_tag }}
                 </div>
+            {% if field.name == 'password' %}            
+                <div class="password-container position-relative">
+                    {% render_field field class="form-control" %}
+                    <span class="toggle-password position-absolute" style="right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;" data-target="#{{ field.id_for_label }}">👁️</span>
+                </div>
+            {% else %}
                 {% render_field field class="form-control" %}
             </div>
+            {% endif %}
         {% endfor %}
         <div class="m-4 text-center">
             <button class="btn btn-primary btn-lg" type="submit" id="submit_button">Entrar</button>
@@ -32,4 +39,18 @@
         </div>
     </form>
 </div>
+<script>
+    document.querySelectorAll('.toggle-password').forEach(item => {
+        item.addEventListener('click', function() {
+            const target = document.querySelector(this.getAttribute('data-target'));
+            if (target.getAttribute('type') === 'password') {
+                target.setAttribute('type', 'text');
+                this.textContent = '🙈';
+            } else {
+                target.setAttribute('type', 'password');
+                this.textContent = '👁️';
+            }
+        });
+    });
+</script>
 {% endblock content %}
