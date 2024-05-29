@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% block content %}
+{% if user.is_authenticated %}
+    {% if user.profile.crp %}
+        {% include "therapist/partials/navbar.html" %}
+    {% elif user.profile.age %}
+        {% include "patient/partials/navbar.html" %}
+    {% endif %}
+{% else %}
+    {% include "partials/navbar.html" %}
+{% endif %}
+<div class="container mx-auto m-5">
+    <div class="card">
+        <div class="card-header">
+            <div class="text-center">
+                <h2>CONTRATO DE PRESTAÇÃO DE SERVIÇOS VOLUNTÁRIOS</h2>
+            </div>
+            <div class="card-body">
+                
+</h5 class="m-1 text-center">O profissional psicólogo, ao se cadastrar nesta plataforma, deverá cumprir as seguintes orientações:</h5>
+<div class="my-2">
+    <p><strong>1. </strong>Estar com o CRP ativo.</p>
+</div>
+<div class="my-2">
+    <p><strong>2. </strong>Seguir o Código de Ética da Psicologia, que pode ser acessado <a class="text-decoration-none" href="https://www.crpsp.org/pagina/view/49/codigo-de-etica">aqui</a></p>
+</div>
+
+
+<p><strong>3. </strong>Conhecer as Resoluções do exercício profissional que “Regulamenta a prestação de serviços psicológicos realizados por meios de 
+    tecnologias da informação e da comunicação”, que podem ser acessadas 
+    <a class="text-decoration-none" href="https://atosoficiais.com.br/cfp/resolucao-do-exercicio-profissional-n-11-2018-regulamenta-a-prestacao-de-servicos-psicologicos-realizados-por-meios-de-tecnologias-da-informacao-e-da-comunicacao-e-revoga-a-resolucao-cfp-no-11-2012?origin=instituicao&q=011/2018">aqui</a>
+    e <a class="text-decoration-none" href="https://atosoficiais.com.br/cfp/resolucao-do-exercicio-profissional-n-4-2020-dispoe-sobre-regulamentacao-de-servicos-psicologicos-prestados-por-meio-de-tecnologia-da-informacao-e-da-comunicacao-durante-a-pandemia-do-covid-19?origin=instituicao">aqui</a></p>
+
+
+<p><strong>4. </strong>Fazer seu <a class="text-decoration-none" href="https://e-psi.cfp.org.br/cadastro-simplificado/encontrarRegistro">cadastro na plataforma e-Psi</a>, e informar o link para seu termo preenchido de 
+    cadastro no e-Psi.</p>
+
+
+<p><strong>5. </strong>Fazer os treinamentos indicados:</p>
+<div class="text-center col-md-7 mx-auto mb-4">
+    <ul class="list-group">
+        <li class="list-group-item"><a class="text-decoration-none" href="https://linktr.ee/lapiccusp?fbclid=PAZXh0bgNhZW0CMTEAAaaXn-jzg0cHbZDsOPdEJHRoEKSrpkcLuuvwdNkIVHWuB_51ov0JY8hlRrk_aem_ATGp5XGpgSJVod_xKnYK8UPLbTsuHx2RfPMj6tguttI1oIPkQ-0-3rUTfwxwYaMZ9srqa2Uj2IKTQbEBJOrLwSxM">LaPICC-USP</a></li>
+        <li class="list-group-item"><a class="text-decoration-none" href="https://iris.paho.org/bitstream/handle/10665.2/7676/9788579670947_por.pdf?sequence=1&isAllowed=y">Primeiros Cuidados Psicológicos: guia para trabalhadores de campo</a></li>
+        <li class="list-group-item"><a class="text-decoration-none" href="https://www.artmed.com.br/artigos/artmed-disponibiliza-conteudos-de-apoio-para-profissionais-da-saude-em-situacoes-emergencias">Artmed</a></li>
+        <li class="list-group-item"><a class="text-decoration-none" href="https://www.youtube.com/watch?v=ns0hHAYC_Hc">Artmed - vídeo</a></li>
+    </ul>
+</div>
+
+<h5 class="text-center">IMPORTANTE SALIENTAR:</h5>
+
+
+<p><strong>A - </strong>O artigo 7 da Resolução 011/2018 veda o atendimento online às pessoas em situações de emergências e desastres no momento de PREVENÇÃO PRIMÁRIA, 
+    ou seja, enquanto a população está sendo afetada e logo imediatamente nas próximas 72 horas, 
+    até que todos estejam em segurança. A prevenção primária deve ocorrer de modo presencial.</p>
+<p>Art. 7º: O atendimento de pessoas e grupos em situação de emergência e desastres pelos meios de tecnologia e informação previstos nesta Resolução é vedado, 
+    devendo a prestação desse tipo de serviço ser executada por profissionais e equipes de forma presencial. (Vide Resolução do Exercício Profissional nº 4/2020)</p>
+<p>Nosso projeto irá propor apoio psicológico online em <strong>PREVENÇÃO SECUNDÁRIA</strong>, na forma de <strong>PLANTÃO</strong>, com atendimentos pontuais.
+    E também <strong>PREVENÇÃO TERCIÁRIA</strong>, na forma de <strong>INTERVENÇÃO BREVE</strong> com até 12 atendimentos, quando necessário.</p>
+<p>Com o objetivo de mitigar o sofrimento causado pelo estresse advindo da catástrofe, oferecendo um espaço de Acolhimento e Escuta diferenciada. 
+    Primeiros Socorros Psicológicos em situações de crises são importantes para ajudar a população a cuidar do trauma advindo dos eventos catastróficos e 
+    assim não evoluir para transtornos mais graves, como TEPT por exemplo. Ajudar a população afetada na recuperação e reconstrução.</p>
+
+
+<p><strong>B - </strong>O trabalho é voluntário e todos os atendimentos serão <strong>GRATUITOS</strong>. Sendo expressamente proibido qualquer forma de cobrança do paciente, 
+    inclusive após o término do período de intervenção de crise, caracterizando-se como “desvio de cliente”, 
+    o que se configura como infração ética do código da psicologia.</p>
+<p>Art. 2º - Ao psicólogo é vedado:</p>
+<p>Desviar para serviço particular ou de outra instituição, visando benefício próprio, pessoas ou organizações atendidas por instituição com 
+    a qual mantenha qualquer tipo de vínculo profissional;
+</p>
+
+<p><strong>C - </strong>Os pacientes atendidos devem seguir os critérios de elegibilidade inseridos na página inicial da plataforma. 
+    Caso o terapeuta receba alguém que fez inscrição de modo equivocado, buscando 
+    psicoterapia, por exemplo, deve fazer o encaminhamento do paciente logo na primeira consulta para outras plataformas como:</p>
+    <div class="text-center col-md-4 mx-auto mb-4">
+        <ul class="list-group">
+            <li class="list-group-item"><a class="text-decoration-none" href="https://eurekka.me/terapia/?ist_privacy_policy=accepted">Eurekka</a></li>
+            <li class="list-group-item"><a class="text-decoration-none" href="https://www.vittude.com/">Vittude</a></li>
+            <li class="list-group-item"><a class="text-decoration-none" href="https://www.psitto.com.br/ ">Psitto</a></li>
+            <li class="list-group-item"><a class="text-decoration-none" href="https://parcerias.conexasaude.com.br">Conexa Saúde</a></li>
+            <li class="list-group-item"><a class="text-decoration-none" href="https://imnd.com.br/">IMND</a></li>
+        </ul>
+    </div>
+
+<p><strong>D - </strong>Para melhor fluxo dos atendimentos, caso o paciente falte em 02 consultas consecutivas sem justificativa, o atendimento 
+    poderá ser encerrado e assim liberado um novo horário.</p>
+
+
+<p><strong>E - SUPERVISÃO: </strong>Serão disponibilizados os links xxx para dois horários semanais de supervisão grupal  oferecidos, de modo voluntário também, pela Dra. Débora Candido de Azevedo.
+    Todos os terapeutas que quiserem e puderem participar serão bem-vindos.
+</p>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

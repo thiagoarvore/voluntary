@@ -14,7 +14,7 @@ def create_user_profile(sender, instance, created, **kwargs):
         calendar = Calendar.objects.get(pk=schedule_id)
         calendar.is_active = False
         calendar.save()
-        
+
 
 @receiver(post_save, sender=Treatment)
 def send_mail_event(sender, instance, created, **kwargs):

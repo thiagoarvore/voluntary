@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+{% load static %}
 {% if user.profile.crp %}
     {% include "therapist/partials/navbar.html" %}
 {% elif user.profile.age %}
@@ -34,7 +35,10 @@
     <div class="card mb-3 text-dark bg-light border-light mx-auto col-8">
         <div class="card-body row">
             <div class="col-md-9 order-md-1 order-2">
-                <p> Simone é..  Candido de Azevedo, Doutora em Pediatria e Ciências aplicadas à Pediatria pela Universidade Federal de São Paulo (UNIFESP), Psicóloga Clínica e Mestre e</p>
+                <p> Simone Silvestrini Hallak, Psicóloga Clínica com Formação em Terapia Cognitiva Comportamental em Adulto, 
+                    Criança e Adolescente , Orientadora Vocacional e Administradora de Empresa.  20 anos de experiência na área de Gestão de 
+                    Pessoas  em empresas Globais atuando nas áreas de Diversidade , Inclusão e  Recursos Humanos. 
+                    Nos últimos 6 anos atuando como psicóloga clínica com adolescentes, adultos e Orientadora Vocacional.</p>
             </div>
             <div class="col-md-3 order-md-2 order-1">
                 <p>foto2</p>        

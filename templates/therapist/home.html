@@ -8,9 +8,17 @@
     {% if not treatments %}
     <div class="mx-auto text-center m-3">
         <p>Você ainda não tem consultas marcadas.</p>
+        {% if user.profile.crp_check  and user.profile.trained %}
+            <div class="text-center m-2">
+                <a class="btn btn-primary mb-4" href="{% url 'new_calendar' %}">Disponibilizar horário</a>
+            </div>
+        {% else %}  
         <div class="text-center m-2">
-            <a class="btn btn-primary mb-4" href="{% url 'new_calendar' %}">Disponibilizar horário</a>
-        </div>            
+            <p class="lead">Você não está de acordo com as diretrizes do CRP ou não tem treinamento de emergência.
+                Após regularizar a sua situação, edite seu perfil para que possa continuar ajudando.
+            </p>
+        </div>
+        {% endif %}            
     </div>    
     {% else %}
         <div class="m-4 col-md-6 mx-auto mb-5">

@@ -81,7 +81,7 @@ def create_calendar(request):
 
 @login_required(login_url='login')
 def create_calendar_page(request):
-    form = CalendarModelForm() 
+    form = CalendarModelForm()
     context = {
         'form': form,
         'calendar': Calendar.objects.filter(therapist=request.user.profile)

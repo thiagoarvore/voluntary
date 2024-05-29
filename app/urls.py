@@ -22,10 +22,13 @@ from django.shortcuts import render
 def index(request):
     return render(request, 'landingpage.html', {})
 
+def contract(request):
+    return render(request, 'therapist/contract.html', {})
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='landing_page'),
+    path('contract/', contract, name='contract_page'),
     path('', include('accounts.urls')),
     path('', include('calendars.urls')),
     path('', include('treatments.urls')),

@@ -42,12 +42,25 @@
         <label>Tem treinamento para emergência:</lable>
             {% render_field form.trained class="form-control" %}
     </div>
-    <div class="container text-center mb-4">            
-        <input type="submit" value="Cadastrar" class="btn btn-primary mx-auto">
+    <div class="m-4 text-center flex-row">
+        <p>Concordo com o <a class="text-decoration-none" href="{% url 'contract_page' %}" target="_blank">contrato de serviço voluntário:</a></p>
+        <input type="checkbox" id="id_acceptance">
+    </div>
+    <div class="m-4 text-center">
+        <button class="btn btn-secondary btn-lg" type="submit" id="submit_button" disabled>Registrar</button>
     </div>
 
     {% if form.errors %}{{form.errors}}{% endif %}
 </form>
 </div>  
+<script>
+    const checkbox = document.getElementById('id_acceptance');
+    const button = document.getElementById('submit_button');
 
+        checkbox.addEventListener('change', function() {
+            button.disabled = !this.checked;
+            button.classList.toggle('btn-primary', this.checked);
+            button.classList.toggle('btn-secondary', !this.checked);
+    });
+</script>
 {% endblock content %}

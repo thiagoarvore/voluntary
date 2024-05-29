@@ -10,9 +10,11 @@ from django.views.generic import CreateView, UpdateView, ListView
 from sweetify.views import SweetifySuccessMixin
 import sweetify
 
+
 @login_required(login_url='login')
 def sending_mail(request):
     return render(request, 'patient/partials/sending_mail.html')
+
 
 @login_required(login_url='login')
 def treatment_create_view(request, therapist_id, schedule_id):
@@ -21,7 +23,7 @@ def treatment_create_view(request, therapist_id, schedule_id):
     patient = request.user.profile
     if request.method == 'POST':
         form = TreatmentModelForm(request.POST)
-        if form.is_valid():            
+        if form.is_valid():
             treatment = form.save(commit=False)
             treatment.therapist = therapist
             treatment.schedule = schedule
