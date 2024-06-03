@@ -1,29 +1,34 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% load static %}
 {% include "partials/navbar.html" %}
-<div class="container mt-5">  
-  <div class="text-center flex my-5">
-    <h2 class="m-5">Bem-vindo ao Cuidado Psi em Rede</h2>
+<div class="container mt-5">
+  <div class="row">  
+    <div class="order-2 order-md-1 text-center flex my-auto col-md-8">
+      <h2 class="m-5">Bem-vindo ao Cuidado Psi em Rede</h2>
+    </div>
+    <!-- Adicionando o logo abaixo do título -->
+    <div class="order-1 order-md-2 text-center col-md-4 mb-3">
+      <img src="{% static 'images/logo2.png' %}" alt="Logo Cuidado Psi em Rede" class="img-fluid" style="max-height: 200px; width: auto;">
+    </div>
   </div>
   <div class="row mb-2">
     <!-- Div do card que será mostrada primeiro em telas pequenas e segunda em telas médias -->
     <div class="order-2 order-md-1 col-12 col-md-8 mx-auto">
       <card class="card mb-3 text-dark bg-light border-light text-center">
-        <p class="card-body">Neste momento, a Cuidado Psi oferece apoio psicológico para dar suporte às Vítimas das Enchentes do Rio Grande do Sul que tiveram suas vidas afetadas em consequência das chuvas.
-        O formato será de Plantão Psicológico ou Intervenção Breve por até 12 sessões. Nosso objetivo é dar suporte como uma ação preventiva secundária de apoio, reconstrução e superação do trauma às vítimas, parentes, turistas e socorristas.</p>
+        <p class="card-body">Neste momento, a Cuidado Psi oferece apoio psicológico às Vítimas das Enchentes do Rio Grande do Sul que tiveram suas vidas afetadas em consequência das chuvas.
+        O formato de atendimento será de Plantão Psicológico ou Intervenção Breve por até 12 sessões. Nosso objetivo é dar suporte como uma ação preventiva secundária de apoio, reconstrução e superação do trauma às vítimas, parentes, turistas e socorristas.</p>
       </card> 
     </div>
     <div class="order-3 order-md-2 text-center mb-4">
-      
-        <p class="card-body"> Você poderá usufruir de nossa plataforma se:</p>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">for morador das áreas afetadas pela catástrofe do RS</li>
-            <li class="list-group-item">for parente de algum morador que foi diretamente afetado</li>
-            <li class="list-group-item">ter presenciado o evento in loco (por exemplo como turista)</li>
-            <li class="list-group-item">for socorrista</li>
-          <ul>        
-      
+      <p class="card-body">Você poderá usufruir de nossa plataforma se:</p>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">for morador das áreas afetadas pela catástrofe do RS</li>
+        <li class="list-group-item">for parente de algum morador que foi diretamente afetado</li>
+        <li class="list-group-item">ter presenciado o evento in loco (por exemplo como turista)</li>
+        <li class="list-group-item">for socorrista</li>
+      </ul>        
     </div>
     <!-- Div do texto e botão que será mostrada segunda em telas pequenas e primeira em telas médias -->
     <div class="order-1 order-md-3 col-12 col-md-6 mt-3 text-center">
@@ -33,7 +38,7 @@
     </div>
     <!-- Div da imagem que mantém a mesma ordem em todas as telas -->
     <div class="order-4 col-12 col-md-6 text-center">
-      <img src="static/images/pareja-casada-que-tiene-problemas-su-relacion-estan-asistiendo-al-psicologo-busca-consejo.jpg" alt="Imagem de destaque" class="img-fluid" style="max-width: 90%; height: auto;">
+      <img src="{% static 'images/pareja-casada-que-tiene-problemas-su-relacion-estan-asistiendo-al-psicologo-busca-consejo.jpg' %}" alt="Imagem de destaque" class="img-fluid" style="max-width: 90%; height: auto;">
     </div> 
   </div> 
 </div>

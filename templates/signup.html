@@ -2,7 +2,7 @@
 {% block content %}
 {% load widget_tweaks %} 
 {% include "partials/navbar.html" %}   
-<div class="container col-8">
+<div class="container col-md-8 mx-auto">
     <h2 class="card-title text-center m-4">Criar Conta</h2>
     <form method="post">
         {% csrf_token %}

@@ -2,8 +2,7 @@
 {% block content %}
 {% load widget_tweaks %}
 {% include "partials/navbar.html" %}
-<div class="container col-8">
-    <p>Olá {{ user.profile }}</p>
+<div class="container col-md-8 mx-auto">
 <form method="post">
     {% csrf_token %}    
     <div class="m-4">
@@ -24,7 +23,7 @@
     </div>
     <div class="m-4">
         <label>CRP:</lable>
-            {{ form.crp }}
+            {% render_field form.crp class="form-control" %}
     </div>
     <div class="m-4">
         <label>Link para termo preenchido de cadastro no e-Psi :</lable>

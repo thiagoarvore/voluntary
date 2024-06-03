@@ -5,28 +5,28 @@
 {% else %}
     {% include "patient/partials/navbar.html" %}
 {% endif %}
-<div class="container">
+<div class="container mx-auto col-md-10">
     <div class="text-center">
-    <div class="row m-4">
-        <div class="col-6 mx-auto">
-            <a class="btn btn-primary" href="{% url 'edit_profile' pk=user.profile %}">Editar Perfil</a>
-        </div>
-        <div class="col-6 mx-auto">
-            <a class="btn btn-danger" href="{% url 'change_password' %}">Trocar senha</a>
-        </div>
-    </div>
-    </div>
-    <div class="col-8 mx-auto">
-        {% for key, value in fields.items %}
-        {% if value %}
-            <div>
-                <p>{{ key }}: <div class="card"><div class="m-1">{{ value }}</div></div></p>
+        <div class="row m-4">
+            <div class="col-6 mx-auto">
+                <a class="btn btn-primary" href="{% url 'edit_profile' pk=user.profile %}">Editar Perfil</a>
             </div>
-        {% endif %}
-        {% endfor %}    
-    </div>
-    <div class="m-4 text-center">
-        <a href="{% url 'delete_user' %}" class="btn btn-danger">Deletar conta</a>
-    </div>
+            <div class="col-6 mx-auto">
+                <a class="btn btn-danger" href="{% url 'change_password' %}">Trocar senha</a>
+            </div>
+        </div>
+        </div>
+        <div class="col-8 mx-auto">
+            {% for key, value in fields.items %}
+            {% if value %}
+                <div>
+                    <p>{{ key }}: <div class="card"><div class="m-1">{{ value }}</div></div></p>
+                </div>
+            {% endif %}
+            {% endfor %}    
+        </div>
+        <div class="m-4 text-center">
+            <a href="{% url 'delete_user' %}" class="btn btn-danger">Deletar conta</a>
+        </div>
 </div>
 {% endblock content %}

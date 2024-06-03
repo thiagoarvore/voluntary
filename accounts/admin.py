@@ -21,4 +21,5 @@ class ProfileAdmin(admin.ModelAdmin):
         'emergency_number',
         'psychiatric',
         'complaint',
+        'e_psi',
     )
