@@ -158,6 +158,7 @@ class ResetPasswordView(auth_views.PasswordResetView):
     form_class = ResetPasswordForm
     from_email = 'cuidadopsiemrede@gmail.com'
     html_email_template_name = 'email_templates/reset_password_email_template.html'
+    email_template_name = "email_templates/reset_password_email_template.html"
     success_url = reverse_lazy("reset-password-done")
     template_name = "password_reset/reset_password_form.html"
     title = ("Recuperar senha")
