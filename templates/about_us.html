@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
 {% load static %}
 {% if user.profile.crp %}
@@ -13,11 +14,6 @@
     <div class="text-center m-4">
         <h1>Sobre nós</h1>
     </div>
-    <div class="mx-auto col-8 m-4 text-center">
-        <h6>A Rede do Bem foi fundada em 2020 com a missão de oferecer ajuda psicológica gratuita às 
-            pessoas na linha de frente no combate à pandemia de Coronavírus.  É um grupo de psicólogos voluntários de São Paulo 
-            que se organiza em situações de Emergência e Desastres.</h6>
-    </div>
     <div class="card mb-3 text-dark bg-light border-light mx-auto col-8">
         <div class="card-body row">
             <div class="col-md-3">
@@ -28,7 +24,7 @@
                     pela Universidade Federal de São Paulo (UNIFESP), Psicóloga Clínica e Mestre em Educação, 
                     Master em Brainspotting (Terapia de reprocessamento de traumas). Ampla experiência acadêmica 
                     nas disciplinas de Atenção Psicossocial, Aconselhamento Psicológico e Plantão psicológico. 
-                    Vice-presidente da SEPQ (Sociedade de Estudos e Pesquisas Qualitativos).</p>
+                    Vice-presidente da SEPQ (Sociedade de Estudos e Pesquisas Qualitativos). Supervisora clínica do Cuidado Psi em Rede.</p>
             </div>
         </div>
     </div>
@@ -41,14 +37,14 @@
                     Nos últimos 6 anos atuando como psicóloga clínica com adolescentes, adultos e Orientadora Vocacional.</p>
             </div>
             <div class="col-md-3 order-md-2 order-1">
-                <img src="{% static 'images/simone.png' %}" alt="Foto da Simone Silvestrini" class="rounded-circle img-fluid">       
+                <img src="{% static 'images/simone.PNG' %}" alt="Foto da Simone Silvestrini" class="rounded-circle img-fluid">       
             </div>
         </div>
     </div>
     <div class="card mb-3 text-dark bg-light border-light mx-auto col-8">
         <div class="card-body row">
             <div class="col-md-3">
-                <img src="{% static 'images/thiago.jpg' %}" alt="Foto do Thiago Azevedo" class="rounded-circle img-fluid">
+                <img src="{% static 'images/thiago.JPG' %}" alt="Foto do Thiago Azevedo" class="rounded-circle img-fluid">
             </div>
             <div class="col-md-9">        
                 <p><strong>Thiago Azevedo Rodrigues de Oliveira</strong>, professor de história em transição para a área de Tecnologia da Informação. 

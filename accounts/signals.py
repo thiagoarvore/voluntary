@@ -7,16 +7,21 @@ from usage_agreement.models import UsageAgreement, UsageAgreementVersion
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Profile.objects.create(user=instance)
-
+    try:
+        if created:
+            Profile.objects.create(user=instance)
+    except:
+        pass
 
 @receiver(post_save, sender=Profile)
 def create_user_usage_agreement(sender, instance, created, **kwargs):
-    if created:
-        version = UsageAgreementVersion.objects.get(is_active=True)
-        UsageAgreement.objects.create(
-            user=instance,
-            version=version,
-            acceptance=True
-        )
+    try:
+        if created:
+            version = UsageAgreementVersion.objects.get(is_active=True)
+            UsageAgreement.objects.create(
+                user=instance,
+                version=version,
+                acceptance=True
+            )
+    except:
+        pass

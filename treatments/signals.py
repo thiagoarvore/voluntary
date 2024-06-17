@@ -18,22 +18,25 @@ def create_user_profile(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=Treatment)
 def send_mail_event(sender, instance, created, **kwargs):
-    if created:
-        mail = Mail()
-        schedule = instance.schedule
-        therapist = instance.therapist
-        therapist_whatsapp = therapist.whatsapp
-        therapist_email = therapist.user.email
-        patient = instance.patient
-        patient_email = patient.user.email
-        data = {
-            'therapist': therapist,
-            'therapist_email': therapist_email,
-            'therapist_whatsapp': therapist_whatsapp,
-            'patient': patient,
-            'patient_email': patient_email,
-            'schedule': schedule,
-            'event_type': 'treatment_creation',
-            'timestamp': datetime.now().strftime("%m/%d/%Y, %H:%M:%S"),
-        }
-        mail.send(data)
+    try:
+        if created:
+            mail = Mail()
+            schedule = instance.schedule
+            therapist = instance.therapist
+            therapist_whatsapp = therapist.whatsapp
+            therapist_email = therapist.user.email
+            patient = instance.patient
+            patient_email = patient.user.email
+            data = {
+                'therapist': therapist,
+                'therapist_email': therapist_email,
+                'therapist_whatsapp': therapist_whatsapp,
+                'patient': patient,
+                'patient_email': patient_email,
+                'schedule': schedule,
+                'event_type': 'treatment_creation',
+                'timestamp': datetime.now().strftime("%m/%d/%Y, %H:%M:%S"),
+            }
+            mail.send(data)
+    except:
+        pass

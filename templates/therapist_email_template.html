@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+    <title>Nova consulta marcada</title>
+</head>
+<body>
+    <div class="container mt-4">
+        <h2><b>Você tem uma nova consulta!</b></h2><br>
+        <h3><b>{{ patient }}</b> agendou uma consulta com você: <b>{{ schedule }}</b>.</h3>
+        <p>Aguarde o contato do paciente para combinar como vocês conversarão.</p>
+        <p>Caso o paciente não entre em contato, o atendimento não ocorra ou por qualquer motivo o atendimento se encerre, não se esqueça de reabrir o horário para outros pacientes na plataforma Cuidado Psi em Rede.</p><br>
+        <div class="d-flex align-items-center">
+            <img alt="Logo" class="img-fluid" style="height: 40px; width: auto; object-fit: contain;" src="https://www.cuidadopsi.com.br/static/images/logonav.png">
+            <p class="mb-0 ms-3">Cuidado Psi em Rede</p>
+        </div>    
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
