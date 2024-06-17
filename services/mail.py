@@ -14,7 +14,7 @@ class Mail:
             message='',
             from_email=f'Cuidado Psi em Rede <{self.__from_mail}>',
             recipient_list=[patient_email],
-            html_message=render_to_string('patient_email_template.html', data),
+            html_message=render_to_string('email_templates/patient_email_template.html', data),
             fail_silently=False
         )
         send_mail(
@@ -22,6 +22,6 @@ class Mail:
             message='',
             from_email=f'Cuidado Psi em Rede <{self.__from_mail}>',
             recipient_list=[therapist_email],
-            html_message=render_to_string('therapist_email_template.html', data),
+            html_message=render_to_string('email_templates/therapist_email_template.html', data),
             fail_silently=False
         )

@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, PasswordChangeForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, PasswordChangeForm, PasswordResetForm
 from django.utils.translation import gettext_lazy as _
 from .models import Profile
 
@@ -94,3 +94,14 @@ class ChangePasswordForm(PasswordChangeForm):
         self.error_messages['password_mismatch'] = _("As senhas não coincidem.")
         self.error_messages['password_too_common'] = _("Esta senha é muito comum.")
         self.error_messages['password_entirely_numeric'] = _("A senha não pode ser completamente numérica.")
+
+
+class ResetPasswordForm(PasswordResetForm):
+    class Meta:
+        model = User
+        fields = ['email']
+
+        labels = {'email': 'Endereço de e-mail'}
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)

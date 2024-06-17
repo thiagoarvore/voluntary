@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.shortcuts import render, redirect
 from treatments.models import Treatment
-from .forms import SignUpForm, UserLoginForm, ProfileModelForm
+from .forms import SignUpForm, UserLoginForm, ProfileModelForm, ResetPasswordForm
 from .models import Profile
 
 
@@ -152,3 +152,31 @@ def delete_account(request):
         messages.success(request, "Sua conta foi deletada com sucesso.")
         return redirect('landing_page')
     return render(request, 'delete_account.html')
+
+
+class ResetPasswordView(auth_views.PasswordResetView):
+    form_class = ResetPasswordForm
+    from_email = 'cuidadopsiemrede@gmail.com'
+    html_email_template_name = 'email_templates/reset_password_email_template.html'
+    success_url = reverse_lazy("reset-password-done")
+    template_name = "password_reset/reset_password_form.html"
+    title = ("Recuperar senha")
+
+
+class ResetPasswordDoneView(auth_views.PasswordResetDoneView):
+    template_name = "password_reset/reset_password_done.html"
+    title = 'Recuperaçao de senha enviada'
+
+
+class ResetPasswordConfirmView(auth_views.PasswordResetConfirmView):
+    success_url = reverse_lazy("password-reset-complete")
+    template_name = "password_reset/reset_password_confirm.html"
+
+
+class ResetPasswordCompleteView(auth_views.PasswordResetCompleteView):
+    template_name = "password_reset/reset_password_complete.html"
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["login_url"] = 'login'
+        return context
