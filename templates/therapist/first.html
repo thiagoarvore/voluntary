@@ -31,7 +31,8 @@
         <label>Link para termo preenchido de cadastro no e-Psi :</lable>
         {% render_field form.e_psi class="form-control" %}
         <div class="mx-auto text-center mt-2">
-            <h6>Tal link se encontra em anexo ao e-mail recebido pelo CFP como resposta ao cadastro efetivado.</h6>
+            <h6>Tal link se encontra em anexo ao e-mail que você recebeu do CFP como resposta ao cadastro efetivado.</h6>
+            <h6>Se você não tem o cadastro no e-Psi, siga os seguintes passos clicando <a target="_blank" href="{% url 'contract_page' %}#e-psi_instructions">aqui</a></h6>
         </div>
         {% if forms.errors %}
         <div class="alert alert-danger">
