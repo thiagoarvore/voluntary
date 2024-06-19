@@ -55,6 +55,9 @@ class ProfileModelForm(forms.ModelForm):
         widgets = {
             'city': forms.Select(),
             'uf': forms.Select(),
+            'crp_check': forms.Select(),
+            'trained': forms.Select(),
+            'e_psi': forms.URLInput()
         }
         labels = {
             'address': 'Endereço',
@@ -73,7 +76,10 @@ class ProfileModelForm(forms.ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
-        super(ProfileModelForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
+        self.fields['e_psi'].error_messages.update({
+            'invalid': _("Insira um endereço para um site válido"),
+        })
 
 
 class UserLoginForm(AuthenticationForm):

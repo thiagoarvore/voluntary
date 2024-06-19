@@ -14,20 +14,34 @@
             {% render_field form.whatsapp class="form-control" %}
     </div>
     <div class="m-4">
-        <label>Cidade:</lable>
-            {% render_field form.city class="form-control" %}
-    </div>
-    <div class="m-4">
         <label>UF:</lable>
             {% render_field form.uf class="form-control" %}
+    </div>
+    <div class="m-4">
+        <label>Cidade:</lable>
+        <div>
+            {% render_field form.city class="form-control select2" %}
+        </div>
     </div>
     <div class="m-4">
         <label>CRP:</lable>
             {% render_field form.crp class="form-control" %}
     </div>
-    <div class="m-4">
+    <div class="m-4 col-md-6">
         <label>Link para termo preenchido de cadastro no e-Psi :</lable>
         {% render_field form.e_psi class="form-control" %}
+        <div class="mx-auto text-center mt-2">
+            <h6>Tal link se encontra em anexo ao e-mail recebido pelo CFP como resposta ao cadastro efetivado.</h6>
+        </div>
+        {% if forms.errors %}
+        <div class="alert alert-danger">
+        {% for field, error_list in form.errors.items  %}
+        {% for error in error_list %}
+        {{ error }}
+        {% endfor %}
+        {% endfor %}
+        </div>
+        {% endif %}        
     </div>
     <div class="m-4">
         <label>Plataforma preferida:</lable>
@@ -35,21 +49,27 @@
     </div>
     <div class="m-4">
         <label>Está de acordo com os princípios do CRP:</lable>
+        <div class="col-md-2">
             {% render_field form.crp_check class="form-control" %}
-    </div>
+        </div>    </div>
     <div class="m-4">
-        <label>Tem treinamento para emergência:</lable>
+        <div><label>Tem treinamento para emergência:</lable></div>
+        <div class="col-md-2">
             {% render_field form.trained class="form-control" %}
+        </div>
+        <div class="mx-auto text-center mt-2">
+            <h6>Se não tem certeza se possui os treinamentos necessários,</h6>
+            <h6>acesse a lista de treinamentos <a target="_blank" href="{% url 'contract_page' %}#training_list">aqui</a> em uma nova aba do seu navegador</h6>
+        </div>
     </div>
     <div class="m-4 text-center flex-row">
         <p>Concordo com o <a class="text-decoration-none" href="{% url 'contract_page' %}" target="_blank">contrato de serviço voluntário:</a></p>
         <input type="checkbox" id="id_acceptance">
     </div>
+    {% if form.errors %}{{form.errors}}{% endif %}
     <div class="m-4 text-center">
         <button class="btn btn-secondary btn-lg" type="submit" id="submit_button" disabled>Registrar</button>
-    </div>
-
-    {% if form.errors %}{{form.errors}}{% endif %}
+    </div>    
 </form>
 </div>  
 <script>
@@ -62,4 +82,24 @@
             button.classList.toggle('btn-secondary', !this.checked);
     });
 </script>
+<script>
+    $(document).ready(function() {
+        // Inicialize o Select2 no campo de cidade
+        $('.select2').select2({
+            placeholder: 'Selecione uma cidade',
+            allowClear: true
+        });
+    });
+</script>
 {% endblock content %}
+{% block scripts %}
+<script>
+    $(document).ready(function() {
+        // Inicialize o Select2 no campo de cidade
+        $('.select2').select2({
+            placeholder: 'Selecione uma cidade',
+            allowClear: true
+        });
+    });
+</script>
+{% endblock %}
