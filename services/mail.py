@@ -25,3 +25,14 @@ class Mail:
             html_message=render_to_string('email_templates/therapist_email_template.html', data),
             fail_silently=False
         )
+
+    def send_help_mail_register_not_complete(self, email, template):
+
+        send_mail(
+            subject='Bem-vindo ao Cuidado Psi em Rede',
+            message='',
+            from_email=f'Cuidado Psi em Rede <{self.__from_mail}>',
+            recipient_list=list(email),
+            html_message=render_to_string(template),
+            fail_silently=False,
+        )
