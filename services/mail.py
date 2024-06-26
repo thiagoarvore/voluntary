@@ -1,6 +1,7 @@
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 
+
 class Mail:
     def __init__(self):
         self.__from_mail = 'cuidadopsiemrede@gmail.com'
@@ -8,7 +9,7 @@ class Mail:
     def send(self, data):
         therapist_email = data['therapist_email']
         patient_email = data['patient_email']
-        
+
         send_mail(
             subject='Você tem uma nova consulta marcada!',
             message='',

@@ -42,10 +42,12 @@ INSTALLED_APPS = [
     'auditlog',
     'django_htmx',
     'rest_framework',
+    'rest_framework_simplejwt',
     'sweetify',
     'widget_tweaks',
 
     'accounts',
+    'authentication',
     'calendars',
     'ibge_data',
     'services',
@@ -92,14 +94,6 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-    },
-    'postgres': {
-        'ENGINE': 'django.db.backends.postgress',
-        'NAME': 'rededobem',
-        'USER': 'postgres',
-        'PASSWORD': config('POSTGRES_PASSWORD'),
-        'HOST': 'localhost',
-        'PORT': '5432'
     }
 }
 
@@ -162,3 +156,11 @@ EMAIL_HOST = config('EMAIL_HOST')
 # alerts
 
 SWEETIFY_SWEETALERT_LIBRARY = 'sweetalert2'
+
+# Simple JWT config
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}

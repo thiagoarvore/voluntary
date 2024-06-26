@@ -176,7 +176,7 @@ class ResetPasswordConfirmView(auth_views.PasswordResetConfirmView):
 
 class ResetPasswordCompleteView(auth_views.PasswordResetCompleteView):
     template_name = "password_reset/reset_password_complete.html"
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["login_url"] = 'login'

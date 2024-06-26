@@ -13,6 +13,7 @@ def create_user_profile(sender, instance, created, **kwargs):
     except:
         pass
 
+
 @receiver(post_save, sender=Profile)
 def create_user_usage_agreement(sender, instance, created, **kwargs):
     try:
