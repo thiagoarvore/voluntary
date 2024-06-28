@@ -71,12 +71,14 @@ class CalendarUpdateView(UpdateView):
 def create_calendar(request):
     if request.method == 'POST':
         form = CalendarModelForm(request.POST)
-        if form.is_valid():
-            calendar = form.save(commit=False)
+        calendar = form.save(commit=False)
+        if Calendar.objects.filter(therapist=request.user.profile, week_day=calendar.week_day, schedule=calendar.schedule).exists():
+            return render(request, 'therapist/partials/calendar.html', context={'failed': 'failed'})
+        if form.is_valid():            
             calendar.therapist = request.user.profile
             calendar.save()
             return render(request, 'therapist/partials/calendar.html')
-    return render(request, 'therapist/partials/new_calendar_form.html', {'form': CalendarModelForm()})
+    return render(request, 'therapist/partials/new_calendar_form.html', {'form': CalendarModelForm(), 'success': 'success'})
 
 
 @login_required(login_url='login')

@@ -1,5 +1,6 @@
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
+import pandas as pd
 
 
 class Mail:
@@ -35,5 +36,16 @@ class Mail:
             from_email=f'Cuidado Psi em Rede <{self.__from_mail}>',
             recipient_list=list(email),
             html_message=render_to_string(template),
+            fail_silently=False,
+        )
+
+    def send_invitation_email(self, email_list):
+
+        send_mail(
+            subject='Agradecimento pelo trabalho voluntário na "Rede do Bem"',
+            message='',
+            from_email=f'Cuidado Psi em Rede <{self.__from_mail}>',
+            recipient_list=email_list,
+            html_message=render_to_string("email_templates/invitation_email_template.html"),
             fail_silently=False,
         )
