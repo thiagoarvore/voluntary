@@ -1,6 +1,5 @@
-from django.core.mail import send_mail
+from django.core.mail import send_mail, send_mass_mail
 from django.template.loader import render_to_string
-import pandas as pd
 
 
 class Mail:
@@ -30,7 +29,7 @@ class Mail:
 
     def send_help_mail_register_not_complete(self, email, template):
 
-        send_mail(
+        send_mass_mail(
             subject='Bem-vindo ao Cuidado Psi em Rede',
             message='',
             from_email=f'Cuidado Psi em Rede <{self.__from_mail}>',
@@ -39,13 +38,13 @@ class Mail:
             fail_silently=False,
         )
 
-    def send_invitation_email(self, email_list):
+    def send_supervision_mail(self, email):
 
-        send_mail(
-            subject='Agradecimento pelo trabalho voluntário na "Rede do Bem"',
+        send_mass_mail(
+            subject='Horário das supervisões',
             message='',
             from_email=f'Cuidado Psi em Rede <{self.__from_mail}>',
-            recipient_list=email_list,
-            html_message=render_to_string("email_templates/invitation_email_template.html"),
+            recipient_list=email,
+            html_message=render_to_string('email_templates/supervision_mail.html'),
             fail_silently=False,
         )
