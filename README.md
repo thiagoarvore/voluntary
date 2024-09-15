@@ -56,9 +56,9 @@
         <img src="https://github.com/thiagoarvore/voluntary/blob/main/static/images/port%20psi%201.png" width=80%>
         <p>Usuários fazem o cadastro e são encaminhados de acordo com seu perfil (terapeuta ou paciente)</p>
         <img src="https://github.com/thiagoarvore/voluntary/blob/main/static/images/port%20psi%202.png" width=80%>
-        <img src="https://github.com/thiagoarvore/voluntary/blob/main/static/images/port%20psi%203.png" width=50%>
+        <img src="https://github.com/thiagoarvore/voluntary/blob/main/static/images/port%20psi%203.png" width=80%>
         <p>Os terapeutas disponibilizam seus horários</p>
-        <img src="https://github.com/thiagoarvore/voluntary/blob/main/static/images/port%20psi%204.png" width=50%>
+        <img src="https://github.com/thiagoarvore/voluntary/blob/main/static/images/port%20psi%204.png" width=80%>
         <p>Os pacientes procuram por terapeutas ou horários mais adequados, marcam a terapia e recebem o contato do terapeuta por e-mail</p>
     </section>
 </body>
