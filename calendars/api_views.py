@@ -25,6 +25,7 @@ class CalendarStatsView(views.APIView):
     def get(self, request):
         calendars = self.queryset
         total_calendars = calendars.count()
+        total_active_calendars = calendars.filter(is_active=True).count()
         calendars_by_week_day = self.queryset.values('week_day').annotate(count=Count('id'))
         calendars_by_hour = self.queryset.values('schedule').annotate(count=Count('id'))
         calendars_by_therapist = self.queryset.values('therapist__name').annotate(count=Count('id'))
@@ -32,6 +33,7 @@ class CalendarStatsView(views.APIView):
         data = {
             'calendars': calendars,
             'total_calendars': total_calendars,
+            'total_active_calendars': total_active_calendars,
             'calendars_by_week_day': calendars_by_week_day,
             'calendars_by_hour': calendars_by_hour,
             'calendars_by_therapist': calendars_by_therapist,

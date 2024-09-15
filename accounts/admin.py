@@ -23,3 +23,4 @@ class ProfileAdmin(admin.ModelAdmin):
         'complaint',
         'e_psi',
     )
+    search_fields = ('name',)

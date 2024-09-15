@@ -38,13 +38,14 @@ class Mail:
             fail_silently=False,
         )
 
-    def send_supervision_mail(self, email):
-
-        send_mass_mail(
-            subject='Horário das supervisões',
-            message='',
-            from_email=f'Cuidado Psi em Rede <{self.__from_mail}>',
-            recipient_list=email,
-            html_message=render_to_string('email_templates/supervision_mail.html'),
-            fail_silently=False,
-        )
+    def send_supervision_mail(self, emails):
+        
+        for email in emails:
+            send_mail(
+                subject='Horário das supervisões',
+                message='',
+                from_email=f'Cuidado Psi em Rede <{self.__from_mail}>',
+                recipient_list=[email],
+                html_message=render_to_string('email_templates/supervision_mail.html'),
+                fail_silently=False,
+            )
