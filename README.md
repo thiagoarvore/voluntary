@@ -53,6 +53,7 @@
     </section>
     <section>
             <h2>Funcionamento</h2>
-            
+            <img src="https://github.com/thiagoarvore/voluntary/blob/main/static/images/port%20psi%201.png" width=50%>
+            <p>Usuários fazem o cadastro e são encaminhados de acordo com seu perfil (terapeuta ou paciente)</p>
     </section>
 </body>
