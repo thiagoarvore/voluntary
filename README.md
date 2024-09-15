@@ -3,6 +3,7 @@
     <header>
         <h1>App fullstack para Ajuda Psicológica Voluntária</h1>
         <p>Este repositório contém um aplicativo projetado para ajudar na organização e coordenação de voluntários durante desastres ou épocas difícies.</p>
+        <p>O projeto está funcionando em: <a href="https://www.cuidadopsi.com.br">https://www.cuidadopsi.com.br</a></p>
         <p>Se você quiser discutir ideias, problemas ou contribuições, sinta-se à vontade para nos contactar.</p>
     </header>
     <section>
