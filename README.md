@@ -51,4 +51,8 @@
             <li>EMAIL_HOST</li>
         </ul>
     </section>
+    <section>
+            <h2>Funcionamento</h2>
+            
+    </section>
 </body>
